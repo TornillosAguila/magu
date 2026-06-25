@@ -95,6 +95,8 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
 .btn-wa{background:#1faa54;color:#fff}
 .btn-wa:hover{background:#25c161;transform:translateY(-2px)}
 .nav-cta{margin-left:6px}
+#navB2B{color:#ffffff;text-shadow:0 1px 2px rgba(34,23,4,.35);font-weight:700}
+#navB2B:hover{color:#ffffff}
 .burger{display:none;background:none;border:1px solid var(--line-strong);border-radius:10px;
   width:42px;height:42px;color:var(--cream);font-size:1.2rem;cursor:pointer;margin-left:auto}
 
@@ -305,25 +307,36 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
 .mm-close{position:absolute;top:24px;right:24px;background:none;border:1px solid var(--line-strong);
   border-radius:10px;width:42px;height:42px;color:var(--cream);font-size:1.3rem;cursor:pointer}
 
-/* ===== MASCOTA DELFÍN + SALPICADURA + GLOBO ===== */
-.mascot-zone{position:fixed;right:0;bottom:0;width:330px;height:360px;z-index:69;pointer-events:none}
-.dolphin-wrap{position:absolute;right:8px;bottom:78px;width:104px;cursor:pointer;pointer-events:auto;
-  opacity:0;transform:translateY(140px) scale(.55) rotate(-12deg);filter:drop-shadow(0 16px 26px rgba(0,0,0,.5))}
+/* ===== MASCOTA DELFÍN ITINERANTE (4 esquinas) ===== */
+.mascot-zone{position:fixed;width:340px;height:184px;z-index:69;pointer-events:none}
+.mascot-zone.pos-br{right:14px;bottom:86px}
+.mascot-zone.pos-tr{right:14px;top:90px}
+.mascot-zone.pos-bl{left:14px;bottom:24px}
+.mascot-zone.pos-tl{left:14px;top:90px}
+
+.dolphin-wrap{position:absolute;width:104px;cursor:pointer;pointer-events:auto;opacity:0;
+  filter:drop-shadow(0 16px 26px rgba(0,0,0,.5))}
+.pos-br .dolphin-wrap{right:0;bottom:0}
+.pos-tr .dolphin-wrap{right:0;top:0}
+.pos-bl .dolphin-wrap{left:0;bottom:0}
+.pos-tl .dolphin-wrap{left:0;top:0}
+.dolphin-flip{transition:none}
+.pos-bl .dolphin-flip,.pos-tl .dolphin-flip{transform:scaleX(-1)}  /* mira hacia el centro */
 .dolphin-wrap svg{display:block;width:100%;height:auto}
-.dolphin-wrap.show{animation:breach 1.15s cubic-bezier(.22,1.4,.36,1) forwards}
-.dolphin-wrap.show .dolphin-inner{animation:bob 3.4s ease-in-out 1.15s infinite}
+.dolphin-wrap.show{animation:pop 1s cubic-bezier(.22,1.4,.36,1) forwards}
+.dolphin-wrap.show .dolphin-inner{animation:bob 3.4s ease-in-out 1s infinite}
 .dolphin-wrap.nudge .dolphin-inner{animation:nudge .7s ease}
-@keyframes breach{
-  0%{opacity:0;transform:translateY(150px) scale(.5) rotate(-16deg)}
-  55%{opacity:1;transform:translateY(-26px) scale(1.06) rotate(6deg)}
-  78%{transform:translateY(6px) scale(.98) rotate(-3deg)}
-  100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+@keyframes pop{
+  0%{opacity:0;transform:scale(.3) translateY(26px)}
+  55%{opacity:1;transform:scale(1.09) translateY(-9px)}
+  78%{transform:scale(.97) translateY(3px)}
+  100%{opacity:1;transform:scale(1) translateY(0)}
 }
 @keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(-2.5deg)}}
 @keyframes nudge{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-10px) rotate(7deg)}60%{transform:translateY(-2px) rotate(-3deg)}}
 
-/* splash above the whatsapp button */
-.splash{position:absolute;right:36px;bottom:74px;width:8px;height:8px;pointer-events:none}
+/* salpicadura: sigue al delfín */
+.splash{position:absolute;left:50%;bottom:-4px;width:8px;height:8px;transform:translateX(-50%);pointer-events:none}
 .drop{position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50% 50% 50% 0;
   background:linear-gradient(160deg,#bfeefb,#5fbfe0);opacity:0;transform:rotate(45deg)}
 .drop.go{animation:dropUp .95s cubic-bezier(.2,.7,.3,1) forwards}
@@ -337,39 +350,87 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
 .crown.go{animation:crown .7s ease-out forwards}
 @keyframes crown{0%{opacity:.9;transform:scale(.3) translateY(8px)}100%{opacity:0;transform:scale(1.5) translateY(-6px)}}
 
-/* speech bubble */
-.speech{position:absolute;right:104px;bottom:118px;max-width:236px;pointer-events:auto;cursor:pointer;
-  background:linear-gradient(165deg,#FBFAF5,#EAF4F9);color:#1b1b3a;border-radius:16px 16px 4px 16px;
+/* globo de mensaje */
+.speech{position:absolute;max-width:212px;pointer-events:auto;cursor:pointer;
+  background:linear-gradient(165deg,#FBFAF5,#EAF4F9);color:#1b1b3a;border-radius:16px;
   padding:14px 30px 14px 16px;font-size:.86rem;line-height:1.4;font-weight:500;
   box-shadow:0 18px 40px -14px rgba(0,0,0,.55);border:1px solid rgba(42,42,94,.1);
-  opacity:0;transform:translateX(14px) scale(.92);transition:opacity .4s,transform .4s;transform-origin:bottom right}
+  opacity:0;transform:scale(.92);transition:opacity .4s,transform .4s;transform-origin:center}
 .speech.show{opacity:1;transform:none}
+.pos-br .speech{right:118px;bottom:4px}
+.pos-tr .speech{right:118px;top:4px}
+.pos-bl .speech{left:118px;bottom:4px}
+.pos-tl .speech{left:118px;top:4px}
 .speech .st{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--amber-deep);margin-bottom:5px;font-weight:700}
 .speech .stxt{transition:opacity .35s}
 .speech .cta-mini{display:inline-block;margin-top:7px;font-weight:700;color:var(--indigo);font-size:.8rem}
-.speech .cta-mini::after{content:" →"}
-.speech::after{content:"";position:absolute;right:-9px;bottom:8px;width:16px;height:16px;
-  background:#EAF4F9;border-right:1px solid rgba(42,42,94,.1);border-bottom:1px solid rgba(42,42,94,.1);
-  transform:rotate(-45deg);border-radius:0 0 3px 0}
+.speech .cta-mini:empty{display:none}
+.speech .cta-mini:not(:empty)::after{content:" →"}
+.speech::after{content:"";position:absolute;width:15px;height:15px;background:#EAF4F9;
+  border:1px solid rgba(42,42,94,.1);transform:rotate(45deg)}
+.pos-br .speech::after{right:-8px;bottom:16px}
+.pos-tr .speech::after{right:-8px;top:16px}
+.pos-bl .speech::after{left:-8px;bottom:16px}
+.pos-tl .speech::after{left:-8px;top:16px}
 .speech-x{position:absolute;top:6px;right:8px;width:20px;height:20px;border:none;background:rgba(42,42,94,.08);
-  border-radius:50%;color:#2A2A5E;font-size:.7rem;cursor:pointer;line-height:1;display:grid;place-items:center}
+  border-radius:50%;color:#2A2A5E;font-size:.7rem;cursor:pointer;line-height:1;display:grid;place-items:center;z-index:2}
 .speech-x:hover{background:rgba(42,42,94,.18)}
 
-@media(max-width:620px){
-  .mascot-zone{width:100%}
-  .dolphin-wrap{width:84px;bottom:74px;right:6px}
-  .speech{right:96px;bottom:108px;max-width:min(64vw,210px);font-size:.8rem}
+@media(max-width:640px){
+  .mascot-zone{width:290px;height:160px}
+  .mascot-zone.pos-bl,.mascot-zone.pos-tl{left:10px}
+  .mascot-zone.pos-br,.mascot-zone.pos-tr{right:10px}
+  .dolphin-wrap{width:80px}
+  .speech{max-width:min(58vw,176px);font-size:.78rem;padding:12px 26px 12px 13px}
+  .pos-br .speech,.pos-tr .speech{right:96px}
+  .pos-bl .speech,.pos-tl .speech{left:96px}
 }
 @media(prefers-reduced-motion:reduce){
-  .dolphin-wrap{opacity:1;transform:none;animation:none}
+  .mascot-zone{transition:none}
+  .dolphin-wrap{opacity:1;animation:none}
+  .dolphin-wrap.show{animation:none;opacity:1}
   .dolphin-wrap.show .dolphin-inner{animation:none}
   .drop,.crown{display:none}
-  .speech{transition:opacity .3s}
+}
+
+/* ===== OLAS DE FONDO QUE RESPIRAN ===== */
+.ambient{position:fixed;inset:0;z-index:3;pointer-events:none;overflow:hidden;mix-blend-mode:screen;
+  animation:breathe 5s ease-in-out infinite}
+.ambient .band{position:absolute;left:0;width:200%;height:170px}
+.ambient .band.bottom{bottom:0}
+.ambient .band.top{top:0;transform:scaleY(-1)}
+.ambient svg{position:absolute;left:0;top:0;width:100%;height:100%}
+.ambient .w1{animation:drift 26s linear infinite}
+.ambient .w2{animation:drift 38s linear infinite reverse}
+@keyframes drift{to{transform:translateX(-50%)}}
+@keyframes breathe{0%,100%{opacity:.05}50%{opacity:.14}}
+@media(prefers-reduced-motion:reduce){
+  .ambient{animation:none;opacity:.07}
+  .ambient .w1,.ambient .w2{animation:none}
 }
 </style>
 </head>
 <body>
+<div class="ambient" id="ambient" aria-hidden="true">
+  <svg width="0" height="0" style="position:absolute"><defs>
+    <linearGradient id="amb-g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5FE6FF" stop-opacity="0"/><stop offset="1" stop-color="#5FE6FF" stop-opacity=".55"/>
+    </linearGradient>
+    <linearGradient id="amb-g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6B6BD6" stop-opacity="0"/><stop offset="1" stop-color="#6B6BD6" stop-opacity=".5"/>
+    </linearGradient>
+  </defs></svg>
+  <div class="band bottom">
+    <svg class="w2" viewBox="0 0 2880 240" preserveAspectRatio="none"><path d="M0 240 L0 70.0 L0 70.0 L20 71.8 L40 73.6 L60 75.4 L80 77.0 L100 78.5 L120 79.9 L140 81.1 L160 82.1 L180 82.9 L200 83.5 L220 83.9 L240 84.0 L260 83.9 L280 83.5 L300 82.9 L320 82.1 L340 81.1 L360 79.9 L380 78.5 L400 77.0 L420 75.4 L440 73.6 L460 71.8 L480 70.0 L500 68.2 L520 66.4 L540 64.6 L560 63.0 L580 61.5 L600 60.1 L620 58.9 L640 57.9 L660 57.1 L680 56.5 L700 56.1 L720 56.0 L740 56.1 L760 56.5 L780 57.1 L800 57.9 L820 58.9 L840 60.1 L860 61.5 L880 63.0 L900 64.6 L920 66.4 L940 68.2 L960 70.0 L980 71.8 L1000 73.6 L1020 75.4 L1040 77.0 L1060 78.5 L1080 79.9 L1100 81.1 L1120 82.1 L1140 82.9 L1160 83.5 L1180 83.9 L1200 84.0 L1220 83.9 L1240 83.5 L1260 82.9 L1280 82.1 L1300 81.1 L1320 79.9 L1340 78.5 L1360 77.0 L1380 75.4 L1400 73.6 L1420 71.8 L1440 70.0 L1460 68.2 L1480 66.4 L1500 64.6 L1520 63.0 L1540 61.5 L1560 60.1 L1580 58.9 L1600 57.9 L1620 57.1 L1640 56.5 L1660 56.1 L1680 56.0 L1700 56.1 L1720 56.5 L1740 57.1 L1760 57.9 L1780 58.9 L1800 60.1 L1820 61.5 L1840 63.0 L1860 64.6 L1880 66.4 L1900 68.2 L1920 70.0 L1940 71.8 L1960 73.6 L1980 75.4 L2000 77.0 L2020 78.5 L2040 79.9 L2060 81.1 L2080 82.1 L2100 82.9 L2120 83.5 L2140 83.9 L2160 84.0 L2180 83.9 L2200 83.5 L2220 82.9 L2240 82.1 L2260 81.1 L2280 79.9 L2300 78.5 L2320 77.0 L2340 75.4 L2360 73.6 L2380 71.8 L2400 70.0 L2420 68.2 L2440 66.4 L2460 64.6 L2480 63.0 L2500 61.5 L2520 60.1 L2540 58.9 L2560 57.9 L2580 57.1 L2600 56.5 L2620 56.1 L2640 56.0 L2660 56.1 L2680 56.5 L2700 57.1 L2720 57.9 L2740 58.9 L2760 60.1 L2780 61.5 L2800 63.0 L2820 64.6 L2840 66.4 L2860 68.2 L2880 70.0 L2880 240 Z" fill="url(#amb-g2)"/></svg>
+    <svg class="w1" viewBox="0 0 2880 240" preserveAspectRatio="none"><path d="M0 240 L0 40.0 L0 40.0 L20 41.7 L40 43.4 L60 45.0 L80 46.4 L100 47.7 L120 48.7 L140 49.4 L160 49.8 L180 50.0 L200 49.8 L220 49.4 L240 48.7 L260 47.7 L280 46.4 L300 45.0 L320 43.4 L340 41.7 L360 40.0 L380 38.3 L400 36.6 L420 35.0 L440 33.6 L460 32.3 L480 31.3 L500 30.6 L520 30.2 L540 30.0 L560 30.2 L580 30.6 L600 31.3 L620 32.3 L640 33.6 L660 35.0 L680 36.6 L700 38.3 L720 40.0 L740 41.7 L760 43.4 L780 45.0 L800 46.4 L820 47.7 L840 48.7 L860 49.4 L880 49.8 L900 50.0 L920 49.8 L940 49.4 L960 48.7 L980 47.7 L1000 46.4 L1020 45.0 L1040 43.4 L1060 41.7 L1080 40.0 L1100 38.3 L1120 36.6 L1140 35.0 L1160 33.6 L1180 32.3 L1200 31.3 L1220 30.6 L1240 30.2 L1260 30.0 L1280 30.2 L1300 30.6 L1320 31.3 L1340 32.3 L1360 33.6 L1380 35.0 L1400 36.6 L1420 38.3 L1440 40.0 L1460 41.7 L1480 43.4 L1500 45.0 L1520 46.4 L1540 47.7 L1560 48.7 L1580 49.4 L1600 49.8 L1620 50.0 L1640 49.8 L1660 49.4 L1680 48.7 L1700 47.7 L1720 46.4 L1740 45.0 L1760 43.4 L1780 41.7 L1800 40.0 L1820 38.3 L1840 36.6 L1860 35.0 L1880 33.6 L1900 32.3 L1920 31.3 L1940 30.6 L1960 30.2 L1980 30.0 L2000 30.2 L2020 30.6 L2040 31.3 L2060 32.3 L2080 33.6 L2100 35.0 L2120 36.6 L2140 38.3 L2160 40.0 L2180 41.7 L2200 43.4 L2220 45.0 L2240 46.4 L2260 47.7 L2280 48.7 L2300 49.4 L2320 49.8 L2340 50.0 L2360 49.8 L2380 49.4 L2400 48.7 L2420 47.7 L2440 46.4 L2460 45.0 L2480 43.4 L2500 41.7 L2520 40.0 L2540 38.3 L2560 36.6 L2580 35.0 L2600 33.6 L2620 32.3 L2640 31.3 L2660 30.6 L2680 30.2 L2700 30.0 L2720 30.2 L2740 30.6 L2760 31.3 L2780 32.3 L2800 33.6 L2820 35.0 L2840 36.6 L2860 38.3 L2880 40.0 L2880 240 Z" fill="url(#amb-g1)"/></svg>
+  </div>
+  <div class="band top">
+    <svg class="w1" viewBox="0 0 2880 240" preserveAspectRatio="none"><path d="M0 240 L0 70.0 L0 70.0 L20 71.8 L40 73.6 L60 75.4 L80 77.0 L100 78.5 L120 79.9 L140 81.1 L160 82.1 L180 82.9 L200 83.5 L220 83.9 L240 84.0 L260 83.9 L280 83.5 L300 82.9 L320 82.1 L340 81.1 L360 79.9 L380 78.5 L400 77.0 L420 75.4 L440 73.6 L460 71.8 L480 70.0 L500 68.2 L520 66.4 L540 64.6 L560 63.0 L580 61.5 L600 60.1 L620 58.9 L640 57.9 L660 57.1 L680 56.5 L700 56.1 L720 56.0 L740 56.1 L760 56.5 L780 57.1 L800 57.9 L820 58.9 L840 60.1 L860 61.5 L880 63.0 L900 64.6 L920 66.4 L940 68.2 L960 70.0 L980 71.8 L1000 73.6 L1020 75.4 L1040 77.0 L1060 78.5 L1080 79.9 L1100 81.1 L1120 82.1 L1140 82.9 L1160 83.5 L1180 83.9 L1200 84.0 L1220 83.9 L1240 83.5 L1260 82.9 L1280 82.1 L1300 81.1 L1320 79.9 L1340 78.5 L1360 77.0 L1380 75.4 L1400 73.6 L1420 71.8 L1440 70.0 L1460 68.2 L1480 66.4 L1500 64.6 L1520 63.0 L1540 61.5 L1560 60.1 L1580 58.9 L1600 57.9 L1620 57.1 L1640 56.5 L1660 56.1 L1680 56.0 L1700 56.1 L1720 56.5 L1740 57.1 L1760 57.9 L1780 58.9 L1800 60.1 L1820 61.5 L1840 63.0 L1860 64.6 L1880 66.4 L1900 68.2 L1920 70.0 L1940 71.8 L1960 73.6 L1980 75.4 L2000 77.0 L2020 78.5 L2040 79.9 L2060 81.1 L2080 82.1 L2100 82.9 L2120 83.5 L2140 83.9 L2160 84.0 L2180 83.9 L2200 83.5 L2220 82.9 L2240 82.1 L2260 81.1 L2280 79.9 L2300 78.5 L2320 77.0 L2340 75.4 L2360 73.6 L2380 71.8 L2400 70.0 L2420 68.2 L2440 66.4 L2460 64.6 L2480 63.0 L2500 61.5 L2520 60.1 L2540 58.9 L2560 57.9 L2580 57.1 L2600 56.5 L2620 56.1 L2640 56.0 L2660 56.1 L2680 56.5 L2700 57.1 L2720 57.9 L2740 58.9 L2760 60.1 L2780 61.5 L2800 63.0 L2820 64.6 L2840 66.4 L2860 68.2 L2880 70.0 L2880 240 Z" fill="url(#amb-g2)"/></svg>
+    <svg class="w2" viewBox="0 0 2880 240" preserveAspectRatio="none"><path d="M0 240 L0 40.0 L0 40.0 L20 41.7 L40 43.4 L60 45.0 L80 46.4 L100 47.7 L120 48.7 L140 49.4 L160 49.8 L180 50.0 L200 49.8 L220 49.4 L240 48.7 L260 47.7 L280 46.4 L300 45.0 L320 43.4 L340 41.7 L360 40.0 L380 38.3 L400 36.6 L420 35.0 L440 33.6 L460 32.3 L480 31.3 L500 30.6 L520 30.2 L540 30.0 L560 30.2 L580 30.6 L600 31.3 L620 32.3 L640 33.6 L660 35.0 L680 36.6 L700 38.3 L720 40.0 L740 41.7 L760 43.4 L780 45.0 L800 46.4 L820 47.7 L840 48.7 L860 49.4 L880 49.8 L900 50.0 L920 49.8 L940 49.4 L960 48.7 L980 47.7 L1000 46.4 L1020 45.0 L1040 43.4 L1060 41.7 L1080 40.0 L1100 38.3 L1120 36.6 L1140 35.0 L1160 33.6 L1180 32.3 L1200 31.3 L1220 30.6 L1240 30.2 L1260 30.0 L1280 30.2 L1300 30.6 L1320 31.3 L1340 32.3 L1360 33.6 L1380 35.0 L1400 36.6 L1420 38.3 L1440 40.0 L1460 41.7 L1480 43.4 L1500 45.0 L1520 46.4 L1540 47.7 L1560 48.7 L1580 49.4 L1600 49.8 L1620 50.0 L1640 49.8 L1660 49.4 L1680 48.7 L1700 47.7 L1720 46.4 L1740 45.0 L1760 43.4 L1780 41.7 L1800 40.0 L1820 38.3 L1840 36.6 L1860 35.0 L1880 33.6 L1900 32.3 L1920 31.3 L1940 30.6 L1960 30.2 L1980 30.0 L2000 30.2 L2020 30.6 L2040 31.3 L2060 32.3 L2080 33.6 L2100 35.0 L2120 36.6 L2140 38.3 L2160 40.0 L2180 41.7 L2200 43.4 L2220 45.0 L2240 46.4 L2260 47.7 L2280 48.7 L2300 49.4 L2320 49.8 L2340 50.0 L2360 49.8 L2380 49.4 L2400 48.7 L2420 47.7 L2440 46.4 L2460 45.0 L2480 43.4 L2500 41.7 L2520 40.0 L2540 38.3 L2560 36.6 L2580 35.0 L2600 33.6 L2620 32.3 L2640 31.3 L2660 30.6 L2680 30.2 L2700 30.0 L2720 30.2 L2740 30.6 L2760 31.3 L2780 32.3 L2800 33.6 L2820 35.0 L2840 36.6 L2860 38.3 L2880 40.0 L2880 240 Z" fill="url(#amb-g1)"/></svg>
+  </div>
+</div>
+
 
 <!-- NAV -->
 <nav class="nav" id="nav">
@@ -687,19 +748,20 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
 </footer>
 
 <!-- MASCOTA DELFÍN -->
-<div class="mascot-zone" id="mascotZone">
+<div class="mascot-zone pos-br" id="mascotZone">
   <div class="speech" id="speech" role="status">
     <button class="speech-x" id="speechX" aria-label="Cerrar">✕</button>
     <span class="st" id="speechTag">Magu te avisa</span>
     <span class="stxt" id="speechText"></span>
     <span class="cta-mini" id="speechCta"></span>
   </div>
-  <div class="splash" id="splash">
+  <div class="dolphin-wrap" id="dolphinWrap" title="¡Hola! Soy Magu">
+   <div class="splash" id="splash">
     <svg class="crown" id="crown" viewBox="0 0 60 40" fill="none">
       <path d="M6 34 q4 -20 10 -2 q3 -22 9 -3 q4 -24 9 -2 q4 -20 9 -1 q4 -16 9 3" stroke="#9ad9ef" stroke-width="3" stroke-linecap="round"/>
     </svg>
-  </div>
-  <div class="dolphin-wrap" id="dolphinWrap" title="¡Hola! Soy Magu">
+   </div>
+   <div class="dolphin-flip" id="dolphinFlip">
    <div class="dolphin-inner">
     <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -738,6 +800,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
       <circle cx="132" cy="64" r="2.6" fill="#5FE6FF"/>
       <circle cx="118" cy="168" r="2.6" fill="#5FE6FF"/>
     </svg>
+   </div>
    </div>
   </div>
 </div>
@@ -792,6 +855,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ===== MASCOTA DELFÍN MAGU ===== */
 (function(){
+  const zone=document.getElementById('mascotZone');
   const wrap=document.getElementById('dolphinWrap');
   const speech=document.getElementById('speech');
   const sTag=document.getElementById('speechTag');
@@ -799,24 +863,31 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   const sCta=document.getElementById('speechCta');
   const splash=document.getElementById('splash');
   const crown=document.getElementById('crown');
-  if(!wrap) return;
+  if(!wrap||!zone) return;
   const WA_VENTAS="https://wa.me/526181586280?text=Hola%20Magu%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n";
 
   const MSGS=[
-    {tag:"Nuevo",  text:"¿Ya conoces nuestra nueva plataforma? Pedidos 24/7 y cotiza en línea.", cta:"Ver Plataforma B2B", href:"#b2b"},
-    {tag:"Atención", text:"Atención a cliente personalizada. Comunícate con nosotros por WhatsApp.", cta:"Abrir WhatsApp", href:WA_VENTAS},
-    {tag:"¿Sabías?", text:"Somos líderes en distribución de marca en la región.", cta:"Ver marcas", href:"#marcas"}
+    {tag:"Nuevo",     text:"¿Ya conoces nuestra nueva plataforma? Pedidos 24/7 y cotiza en línea.", cta:"Ver Plataforma B2B", href:"#b2b"},
+    {tag:"Atención",  text:"Atención a cliente personalizada. Comunícate con nosotros por WhatsApp.", cta:"Abrir WhatsApp", href:WA_VENTAS},
+    {tag:"¿Sabías?",  text:"Somos líderes en distribución de marca en la región.", cta:"Ver marcas", href:"#marcas"},
+    {tag:"Calidad",   text:"Productos de calidad, con las mejores marcas del mercado.", cta:"Ver marcas", href:"#marcas"},
+    {tag:"Precios",   text:"Excelentes precios, los más competitivos de la región.", cta:"Cotizar ahora", href:WA_VENTAS},
+    {tag:"Servicio",  text:"Buena atención y servicio al cliente, siempre.", cta:"Escríbenos", href:WA_VENTAS},
+    {tag:"Equipo",    text:"Personal altamente capacitado para asesorarte.", cta:"Conócenos", href:"#nosotros"},
+    {tag:"Inventario",text:"Amplio surtido y stock disponible en almacén.", cta:"Hacer pedido", href:"#b2b"},
+    {tag:"Vanguardia",text:"Productos de vanguardia y de la mejor calidad.", cta:"Ver marcas", href:"#marcas"},
+    {tag:"Confianza", text:"Calificación 4.6★ con 447 opiniones en Google.", cta:"Ver ubicación", href:"#ubicacion"}
   ];
-  let i=0, started=false, timer=null;
+  const POS=['pos-br','pos-bl','pos-tl','pos-tr'];  // esquinas: inf-der, inf-izq, sup-izq, sup-der
+  let i=0, tipShown=0, posIdx=0, started=false, timer=null;
   const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   function makeSplash(){
     if(reduce) return;
     crown.classList.remove('go'); void crown.offsetWidth; crown.classList.add('go');
     for(let k=0;k<9;k++){
-      const d=document.createElement('span');
-      d.className='drop';
-      const ang=(-130 + k*(80/8)) * Math.PI/180;     // fan upward
+      const d=document.createElement('span'); d.className='drop';
+      const ang=(-130 + k*(80/8)) * Math.PI/180;
       const dist=34+Math.random()*30;
       d.style.setProperty('--dx',(Math.cos(ang)*dist).toFixed(1)+'px');
       d.style.setProperty('--dy',(Math.sin(ang)*dist).toFixed(1)+'px');
@@ -826,43 +897,49 @@ document.getElementById('yr').textContent = new Date().getFullYear();
       setTimeout(()=>d.remove(),1000);
     }
   }
+  function applyPos(idx){ POS.forEach(p=>zone.classList.remove(p)); zone.classList.add(POS[idx]); }
+  function surface(){ wrap.classList.remove('show'); void wrap.offsetWidth; wrap.classList.add('show'); makeSplash(); }
   function render(){
     const m=MSGS[i];
     sText.style.opacity=0; sCta.style.opacity=0;
     setTimeout(()=>{
-      sTag.textContent=m.tag; sText.textContent=" "+m.text; sCta.textContent=m.cta;
-      speech.dataset.href=m.href;
+      sTag.textContent=m.tag; sText.textContent=" "+m.text; sCta.textContent=m.cta||"";
+      speech.dataset.href=m.href||"";
       sText.style.opacity=1; sCta.style.opacity=1;
     },180);
-  }
-  function nextMsg(){
-    i=(i+1)%MSGS.length;
-    render();
-    makeSplash();
-    wrap.classList.remove('nudge'); void wrap.offsetWidth; wrap.classList.add('nudge');
   }
   function go(href){
     if(!href) return;
     if(href.charAt(0)==='#'){ const el=document.querySelector(href); if(el) el.scrollIntoView({behavior:'smooth'}); }
     else { window.open(href,'_blank','noopener'); }
   }
+  function tick(){
+    i=(i+1)%MSGS.length;
+    tipShown++;
+    const want=Math.floor((tipShown-1)/2)%POS.length;  // cambia de esquina cada 2 consejos
+    if(want!==posIdx){
+      posIdx=want;
+      speech.classList.remove('show');               // se esconde, salta de esquina y reaparece
+      setTimeout(()=>{ applyPos(posIdx); surface(); render(); setTimeout(()=>speech.classList.add('show'),520); }, 360);
+    }else{
+      render(); makeSplash();
+      wrap.classList.remove('nudge'); void wrap.offsetWidth; wrap.classList.add('nudge');
+    }
+  }
   function start(){
     if(started) return; started=true;
-    wrap.classList.add('show');
-    makeSplash();
-    render();
+    tipShown=1; posIdx=0; applyPos(0);
+    wrap.classList.add('show'); makeSplash(); render();
     setTimeout(()=>speech.classList.add('show'), 650);
-    timer=setInterval(nextMsg, 5000);   // un mensaje cada 5 s
+    timer=setInterval(tick, 5000);   // un consejo cada 5 s
   }
-  // interacciones
   speech.addEventListener('click',e=>{ if(e.target.id==='speechX') return; go(speech.dataset.href); });
   document.getElementById('speechX').addEventListener('click',e=>{
     e.stopPropagation(); speech.classList.remove('show'); clearInterval(timer);
   });
   wrap.addEventListener('click',()=>{ makeSplash(); go(WA_VENTAS); });
 
-  // aparece 5 s después de cargar la página
-  setTimeout(start, 5000);
+  setTimeout(start, 5000);   // aparece 5 s después de cargar
 })();
 </script>
 </body>
