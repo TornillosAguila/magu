@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distribuciones Magu — Tu ferretería de confianza</title>
+<meta name="description" content="Magu Distribuciones, tu ferretería de confianza en Durango. Más de 18 marcas líderes, plataforma B2B de pedidos mayoristas y atención por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0F0F2E;
+  --ink-2:#14143A;
+  --indigo:#2A2A5E;
+  --indigo-2:#3A3A78;
+  --amber:#F2A93C;
+  --amber-deep:#E08A2B;
+  --cream:#F6F3EA;
+  --paper:#FBFAF5;
+  --steel:#9AA0C2;
+  --steel-dim:#6E739A;
+  --line:rgba(154,160,194,.18);
+  --line-strong:rgba(154,160,194,.32);
+  --r:18px;
+  --maxw:1240px;
+  --disp:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Inter",system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--ink);
+  color:var(--cream);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--amber);display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--amber);display:inline-block}
+h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing:-.02em}
+
+/* ---------- BLUEPRINT GRID BG ---------- */
+.grid-bg{
+  position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:54px 54px;
+  -webkit-mask-image:radial-gradient(120% 90% at 70% 10%,#000 30%,transparent 78%);
+          mask-image:radial-gradient(120% 90% at 70% 10%,#000 30%,transparent 78%);
+}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  transition:background .35s ease,backdrop-filter .35s ease,border-color .35s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(15,15,46,.78);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:26px;height:74px}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.brand img{height:42px;width:auto}
+.brand .bt{font-family:var(--disp);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;line-height:1}
+.brand .bt span{display:block;font-family:var(--mono);font-weight:400;font-size:.56rem;letter-spacing:.22em;color:var(--steel);text-transform:uppercase;margin-top:3px}
+.nav-links{display:flex;gap:28px;margin-left:auto;align-items:center}
+.nav-links a{font-size:.92rem;color:var(--steel);font-weight:500;transition:color .2s;position:relative}
+.nav-links a:hover{color:var(--cream)}
+.nav-pill{
+  display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.74rem;
+  color:var(--cream);border:1px solid var(--line-strong);border-radius:999px;padding:7px 13px;
+}
+.nav-pill .star{color:var(--amber)}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.92rem;
+  padding:12px 20px;border-radius:999px;cursor:pointer;border:1px solid transparent;
+  transition:transform .18s ease,box-shadow .25s ease,background .25s;white-space:nowrap;
+}
+.btn:active{transform:translateY(1px)}
+.btn-amber{background:var(--amber);color:#221704;box-shadow:0 10px 30px -10px rgba(242,169,60,.7)}
+.btn-amber:hover{background:#ffba50;box-shadow:0 16px 40px -10px rgba(242,169,60,.85);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line-strong);color:var(--cream)}
+.btn-ghost:hover{border-color:var(--amber);color:#fff}
+.btn-wa{background:#1faa54;color:#fff}
+.btn-wa:hover{background:#25c161;transform:translateY(-2px)}
+.nav-cta{margin-left:6px}
+.burger{display:none;background:none;border:1px solid var(--line-strong);border-radius:10px;
+  width:42px;height:42px;color:var(--cream);font-size:1.2rem;cursor:pointer;margin-left:auto}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 70px;overflow:hidden}
+.hero-glow{position:absolute;width:780px;height:780px;border-radius:50%;
+  background:radial-gradient(circle,rgba(58,58,120,.55),transparent 62%);
+  top:-220px;right:-180px;filter:blur(20px);pointer-events:none}
+.hero-glow.two{background:radial-gradient(circle,rgba(242,169,60,.16),transparent 60%);
+  left:-260px;top:auto;bottom:-260px;right:auto;width:640px;height:640px}
+.hero-in{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;position:relative;z-index:2}
+.hero-copy .eyebrow{margin-bottom:22px}
+.hero h1{font-size:clamp(2.6rem,6.2vw,5.1rem);margin-bottom:10px}
+.hero h1 .accent{color:var(--amber)}
+.hero .slogan{font-family:var(--disp);font-weight:600;font-size:clamp(1.05rem,2.1vw,1.5rem);color:var(--steel);max-width:30ch;margin-bottom:26px;line-height:1.25}
+.hero .slogan b{color:var(--cream);font-weight:700}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.rating-badge{display:inline-flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;
+  padding:12px 16px;background:rgba(255,255,255,.025)}
+.rating-badge .num{font-family:var(--disp);font-weight:800;font-size:1.7rem;line-height:1}
+.rating-stars{color:var(--amber);font-size:.95rem;letter-spacing:2px}
+.rating-badge .meta{font-size:.78rem;color:var(--steel);font-family:var(--mono)}
+.rating-badge .g{font-weight:700;color:var(--cream)}
+
+/* hero emblem */
+.emblem-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:440px}
+.tri-ring{position:absolute;width:430px;height:430px;animation:spin 38s linear infinite}
+.tri-ring.r2{width:330px;height:330px;animation-duration:26s;animation-direction:reverse;opacity:.55}
+@keyframes spin{to{transform:rotate(360deg)}}
+.emblem-logo{position:relative;z-index:3;width:230px;filter:drop-shadow(0 24px 50px rgba(0,0,0,.55))}
+.emblem-coords{position:absolute;font-family:var(--mono);font-size:.62rem;color:var(--steel-dim);letter-spacing:.1em}
+.c-tl{top:12px;left:10px}.c-br{bottom:14px;right:12px}
+
+/* ---------- SECTION SCAFFOLD ---------- */
+.section{position:relative;padding:108px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:54px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2rem,4.4vw,3.3rem);max-width:18ch}
+.sec-head p{color:var(--steel);max-width:42ch;font-size:1rem}
+.idx{font-family:var(--mono);font-size:.72rem;color:var(--amber);letter-spacing:.2em}
+
+/* ---------- STATS BAR ---------- */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.015)}
+.stats-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:38px 26px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.stat:first-child{border-left:none}
+.stat .v{font-family:var(--disp);font-weight:800;font-size:2.5rem;line-height:1;color:var(--cream)}
+.stat .v .u{color:var(--amber)}
+.stat .l{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
+
+/* ---------- ABOUT ---------- */
+.about{background:linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 100%)}
+.mv{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:64px}
+.mv-card{border:1px solid var(--line);border-radius:var(--r);padding:34px;background:rgba(255,255,255,.02);
+  position:relative;overflow:hidden}
+.mv-card::after{content:"";position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(242,169,60,.12),transparent 70%)}
+.mv-card .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--amber);text-transform:uppercase}
+.mv-card h3{font-size:1.6rem;margin:10px 0 14px}
+.mv-card p{color:#cdd0e6;font-size:.98rem}
+.mv-card .kicker{margin-top:16px;font-family:var(--disp);font-weight:600;color:var(--cream);font-size:1.02rem}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.value{border:1px solid var(--line);border-radius:14px;padding:26px 22px;transition:border-color .3s,transform .3s,background .3s}
+.value:hover{border-color:var(--amber);transform:translateY(-5px);background:rgba(242,169,60,.04)}
+.value .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(242,169,60,.12);
+  color:var(--amber);margin-bottom:16px}
+.value h4{font-family:var(--disp);font-weight:700;font-size:1.12rem;margin-bottom:6px}
+.value p{font-size:.85rem;color:var(--steel)}
+
+/* ---------- MARCAS ---------- */
+.marcas{background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.marquee{display:flex;gap:18px;width:max-content;animation:slide 46s linear infinite}
+.marquee.rev{animation-direction:reverse;animation-duration:54s;margin-top:18px}
+.marquee:hover{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.chip{flex:0 0 auto;width:178px;height:96px;background:var(--paper);border-radius:14px;display:grid;place-items:center;
+  padding:18px;box-shadow:0 18px 40px -22px rgba(0,0,0,.6)}
+.chip img{max-height:54px;width:auto;object-fit:contain}
+.marquee-mask{position:relative}
+.marquee-mask::before,.marquee-mask::after{content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.marquee-mask::before{left:0;background:linear-gradient(90deg,var(--ink-2),transparent)}
+.marquee-mask::after{right:0;background:linear-gradient(270deg,var(--ink-2),transparent)}
+
+/* ---------- B2B ---------- */
+.b2b{position:relative;background:
+   radial-gradient(120% 80% at 80% 0,rgba(58,58,120,.5),transparent 60%),var(--ink)}
+.b2b-in{display:grid;grid-template-columns:.95fr 1.05fr;gap:54px;align-items:center}
+.b2b h2{font-size:clamp(2.1rem,4.6vw,3.4rem);margin:14px 0 18px}
+.b2b h2 .accent{color:var(--amber)}
+.b2b p.lead{color:#cdd0e6;font-size:1.05rem;max-width:46ch;margin-bottom:26px}
+.b2b-feats{list-style:none;display:grid;gap:14px;margin-bottom:30px}
+.b2b-feats li{display:flex;gap:12px;align-items:flex-start;font-size:.96rem;color:var(--cream)}
+.b2b-feats svg{flex-shrink:0;margin-top:3px;color:var(--amber)}
+.b2b-cta{display:flex;gap:14px;flex-wrap:wrap}
+/* mock dashboard */
+.dash{border:1px solid var(--line-strong);border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1b1b46,#15153a);
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.8);transform:perspective(1400px) rotateY(-9deg) rotateX(3deg);transition:transform .5s}
+.dash:hover{transform:perspective(1400px) rotateY(-3deg) rotateX(1deg)}
+.dash-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.2)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dash-bar .url{margin-left:12px;font-family:var(--mono);font-size:.72rem;color:var(--steel);
+  background:rgba(255,255,255,.05);padding:5px 12px;border-radius:7px;flex:1}
+.dash-body{padding:22px}
+.dash-row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px}
+.dash-row .h{font-family:var(--disp);font-weight:700;font-size:1.05rem}
+.mini-pill{font-family:var(--mono);font-size:.66rem;color:#221704;background:var(--amber);padding:4px 10px;border-radius:6px}
+.dash-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+.dcard{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:14px}
+.dcard .k{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--steel);text-transform:uppercase}
+.dcard .v{font-family:var(--disp);font-weight:800;font-size:1.35rem;margin-top:6px}
+.dcard .v small{color:var(--amber);font-size:.7rem}
+.dash-list .item{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid var(--line);font-size:.85rem}
+.dash-list .item:first-child{border-top:none}
+.dash-list .sku{font-family:var(--mono);color:var(--steel);font-size:.74rem}
+.dash-list .amt{font-weight:700}
+.qty{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;color:var(--cream);
+  border:1px solid var(--line);border-radius:7px;padding:3px 8px}
+
+/* ---------- CANALES ---------- */
+.canales{background:var(--ink-2);border-top:1px solid var(--line)}
+.chan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.chan{border:1px solid var(--line);border-radius:var(--r);padding:30px;background:rgba(255,255,255,.02);
+  display:flex;flex-direction:column;transition:border-color .3s,transform .3s;position:relative;overflow:hidden}
+.chan:hover{border-color:var(--amber);transform:translateY(-5px)}
+.chan .num{font-family:var(--mono);font-size:.7rem;color:var(--amber);letter-spacing:.2em}
+.chan h3{font-size:1.45rem;margin:8px 0 6px}
+.chan .desc{color:var(--steel);font-size:.9rem;margin-bottom:22px;min-height:42px}
+.chan .lines{display:grid;gap:10px;margin-bottom:24px}
+.chan .line{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.84rem;color:var(--cream)}
+.chan .line svg{color:var(--amber);flex-shrink:0}
+.chan .acts{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}
+.chan .acts .btn{flex:1;justify-content:center;font-size:.84rem;padding:11px 12px}
+
+/* ---------- UBICACION ---------- */
+.ubic{background:var(--ink)}
+.ubic-in{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:stretch}
+.map-frame{border:1px solid var(--line-strong);border-radius:var(--r);overflow:hidden;min-height:420px;position:relative}
+.map-frame iframe{width:100%;height:100%;border:0;min-height:420px;filter:grayscale(.25) contrast(1.05)}
+.loc-card{border:1px solid var(--line);border-radius:var(--r);padding:34px;background:rgba(255,255,255,.02);
+  display:flex;flex-direction:column;gap:22px}
+.loc-card h3{font-size:1.7rem}
+.loc-item{display:flex;gap:14px;align-items:flex-start}
+.loc-item .ico{width:40px;height:40px;border-radius:10px;background:rgba(242,169,60,.12);color:var(--amber);
+  display:grid;place-items:center;flex-shrink:0}
+.loc-item .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
+.loc-item .val{font-size:.98rem;color:var(--cream);margin-top:2px}
+.open-now{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;color:#5fd58a;font-weight:600}
+.open-now .dotg{width:9px;height:9px;border-radius:50%;background:#5fd58a;box-shadow:0 0 0 4px rgba(95,213,138,.18);animation:pulse 2.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(95,213,138,0)}}
+
+/* ---------- FOOTER ---------- */
+.foot{background:var(--ink-2);border-top:1px solid var(--line);padding:72px 0 34px}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;margin-bottom:54px}
+.foot .brand img{height:54px}
+.foot .fslogan{color:var(--steel);font-family:var(--disp);font-weight:600;font-size:1.05rem;margin:18px 0 22px;max-width:26ch}
+.socials{display:flex;gap:12px}
+.soc{width:44px;height:44px;border-radius:12px;border:1px solid var(--line-strong);display:grid;place-items:center;
+  color:var(--cream);transition:all .25s}
+.soc:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-3px)}
+.fcol h5{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+.fcol a,.fcol p{display:block;color:var(--steel);font-size:.9rem;margin-bottom:10px;transition:color .2s}
+.fcol a:hover{color:var(--cream)}
+.foot-bot{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;
+  align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:var(--steel-dim)}
+
+/* floating WA */
+.fab{position:fixed;right:22px;bottom:22px;z-index:70;width:58px;height:58px;border-radius:50%;background:#1faa54;
+  display:grid;place-items:center;box-shadow:0 16px 40px -12px rgba(31,170,84,.8);transition:transform .25s;
+  animation:fabin .6s .8s both}
+.fab:hover{transform:scale(1.08)}
+@keyframes fabin{from{transform:scale(0) translateY(20px);opacity:0}}
+.fab svg{width:30px;height:30px;color:#fff}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:1000px){
+  .hero-in{grid-template-columns:1fr;gap:30px}
+  .emblem-stage{min-height:340px;order:-1}
+  .b2b-in,.ubic-in{grid-template-columns:1fr;gap:36px}
+  .mv,.values,.chan-grid,.dash-cards{grid-template-columns:1fr 1fr}
+  .stats-in{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:none}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .burger{display:grid;place-items:center}
+  .dash{transform:none}
+}
+@media(max-width:620px){
+  .wrap{padding:0 18px}
+  .values,.chan-grid{grid-template-columns:1fr}
+  .mv{grid-template-columns:1fr}
+  .dash-cards{grid-template-columns:1fr 1fr}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .stat .v{font-size:2rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+/* mobile menu */
+.mobile-menu{position:fixed;inset:0;z-index:65;background:rgba(15,15,46,.97);backdrop-filter:blur(10px);
+  display:none;flex-direction:column;padding:90px 28px;gap:8px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--disp);font-weight:600;font-size:1.6rem;padding:12px 0;border-bottom:1px solid var(--line)}
+.mobile-menu .btn{margin-top:20px;justify-content:center}
+.mm-close{position:absolute;top:24px;right:24px;background:none;border:1px solid var(--line-strong);
+  border-radius:10px;width:42px;height:42px;color:var(--cream);font-size:1.3rem;cursor:pointer}
+
+/* ===== MASCOTA DELFÍN + SALPICADURA + GLOBO ===== */
+.mascot-zone{position:fixed;right:0;bottom:0;width:330px;height:360px;z-index:69;pointer-events:none}
+.dolphin-wrap{position:absolute;right:8px;bottom:78px;width:104px;cursor:pointer;pointer-events:auto;
+  opacity:0;transform:translateY(140px) scale(.55) rotate(-12deg);filter:drop-shadow(0 16px 26px rgba(0,0,0,.5))}
+.dolphin-wrap svg{display:block;width:100%;height:auto}
+.dolphin-wrap.show{animation:breach 1.15s cubic-bezier(.22,1.4,.36,1) forwards}
+.dolphin-wrap.show .dolphin-inner{animation:bob 3.4s ease-in-out 1.15s infinite}
+.dolphin-wrap.nudge .dolphin-inner{animation:nudge .7s ease}
+@keyframes breach{
+  0%{opacity:0;transform:translateY(150px) scale(.5) rotate(-16deg)}
+  55%{opacity:1;transform:translateY(-26px) scale(1.06) rotate(6deg)}
+  78%{transform:translateY(6px) scale(.98) rotate(-3deg)}
+  100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(-2.5deg)}}
+@keyframes nudge{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-10px) rotate(7deg)}60%{transform:translateY(-2px) rotate(-3deg)}}
+
+/* splash above the whatsapp button */
+.splash{position:absolute;right:36px;bottom:74px;width:8px;height:8px;pointer-events:none}
+.drop{position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50% 50% 50% 0;
+  background:linear-gradient(160deg,#bfeefb,#5fbfe0);opacity:0;transform:rotate(45deg)}
+.drop.go{animation:dropUp .95s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes dropUp{
+  0%{opacity:0;transform:translate(0,6px) scale(.4) rotate(45deg)}
+  18%{opacity:1}
+  60%{opacity:1;transform:translate(var(--dx),var(--dy)) scale(1) rotate(45deg)}
+  100%{opacity:0;transform:translate(calc(var(--dx)*1.25),calc(var(--dy)*-.35 + 34px)) scale(.5) rotate(45deg)}
+}
+.crown{position:absolute;left:-26px;top:-12px;width:60px;height:40px;opacity:0}
+.crown.go{animation:crown .7s ease-out forwards}
+@keyframes crown{0%{opacity:.9;transform:scale(.3) translateY(8px)}100%{opacity:0;transform:scale(1.5) translateY(-6px)}}
+
+/* speech bubble */
+.speech{position:absolute;right:104px;bottom:118px;max-width:236px;pointer-events:auto;cursor:pointer;
+  background:linear-gradient(165deg,#FBFAF5,#EAF4F9);color:#1b1b3a;border-radius:16px 16px 4px 16px;
+  padding:14px 30px 14px 16px;font-size:.86rem;line-height:1.4;font-weight:500;
+  box-shadow:0 18px 40px -14px rgba(0,0,0,.55);border:1px solid rgba(42,42,94,.1);
+  opacity:0;transform:translateX(14px) scale(.92);transition:opacity .4s,transform .4s;transform-origin:bottom right}
+.speech.show{opacity:1;transform:none}
+.speech .st{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--amber-deep);margin-bottom:5px;font-weight:700}
+.speech .stxt{transition:opacity .35s}
+.speech .cta-mini{display:inline-block;margin-top:7px;font-weight:700;color:var(--indigo);font-size:.8rem}
+.speech .cta-mini::after{content:" →"}
+.speech::after{content:"";position:absolute;right:-9px;bottom:8px;width:16px;height:16px;
+  background:#EAF4F9;border-right:1px solid rgba(42,42,94,.1);border-bottom:1px solid rgba(42,42,94,.1);
+  transform:rotate(-45deg);border-radius:0 0 3px 0}
+.speech-x{position:absolute;top:6px;right:8px;width:20px;height:20px;border:none;background:rgba(42,42,94,.08);
+  border-radius:50%;color:#2A2A5E;font-size:.7rem;cursor:pointer;line-height:1;display:grid;place-items:center}
+.speech-x:hover{background:rgba(42,42,94,.18)}
+
+@media(max-width:620px){
+  .mascot-zone{width:100%}
+  .dolphin-wrap{width:84px;bottom:74px;right:6px}
+  .speech{right:96px;bottom:108px;max-width:min(64vw,210px);font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .dolphin-wrap{opacity:1;transform:none;animation:none}
+  .dolphin-wrap.show .dolphin-inner{animation:none}
+  .drop,.crown{display:none}
+  .speech{transition:opacity .3s}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">
+      <img src="assets/img/logo-magu.png" alt="Magu">
+      <div class="bt">MAGU<span>Distribuciones</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#b2b">Plataforma B2B</a>
+      <a href="#canales">Atención</a>
+      <a href="#ubicacion">Ubicación</a>
+      <span class="nav-pill"><span class="star">★</span> 4.6 <span style="color:var(--steel)">·</span> 447</span>
+      <a href="#" class="btn btn-amber nav-cta" id="navB2B">Plataforma B2B</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Abrir menú">☰</button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menú">✕</button>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#marcas">Marcas</a>
+  <a href="#b2b">Plataforma B2B</a>
+  <a href="#canales">Atención</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a href="#" class="btn btn-amber">Entrar a la plataforma B2B</a>
+  <a href="https://wa.me/526181586280?text=Hola%20Magu%2C%20quiero%20cotizar%20productos" class="btn btn-wa">WhatsApp Ventas</a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow two"></div>
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Ferretería · Durango, Dgo.</span>
+      <h1 class="reveal">Tu proyecto,<br>con respaldo<br><span class="accent">de confianza.</span></h1>
+      <p class="slogan reveal"><b>Distribuciones Magu</b>, tu ferretería de confianza. Insumos, herramientas y las marcas líderes que tu obra necesita.</p>
+      <div class="hero-cta reveal">
+        <a href="#" class="btn btn-amber" id="heroB2B">
+          Plataforma B2B
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://wa.me/526181586280?text=Hola%20Magu%2C%20quiero%20cotizar%20productos" class="btn btn-ghost">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zM6.597 20.13c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.515 5.26l-.999 3.648 3.973-.707z"/></svg>
+          Hablar con Ventas
+        </a>
+      </div>
+      <div class="rating-badge reveal">
+        <div class="num">4.6</div>
+        <div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="meta"><span class="g">447 opiniones</span> en Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="emblem-stage reveal">
+      <span class="emblem-coords c-tl">N 24.0277° · O 104.6532°</span>
+      <span class="emblem-coords c-br">EST. 2026 · DGO</span>
+      <svg class="tri-ring" viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="92" stroke="rgba(154,160,194,.22)" stroke-width="1" stroke-dasharray="3 6"/>
+        <g stroke="#F2A93C" stroke-width="2" stroke-linecap="round">
+          <path d="M100 16 a84 84 0 0 1 72.7 42" opacity=".9"/>
+          <path d="M172.7 142 a84 84 0 0 1 -145.4 0" opacity=".5"/>
+          <path d="M27.3 58 a84 84 0 0 1 72.7 -42" opacity=".7"/>
+        </g>
+        <g fill="#F2A93C"><circle cx="100" cy="16" r="3.4"/><circle cx="172.7" cy="142" r="3.4"/><circle cx="27.3" cy="142" r="3.4"/></g>
+      </svg>
+      <svg class="tri-ring r2" viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="78" stroke="rgba(242,169,60,.3)" stroke-width="1"/>
+      </svg>
+      <img class="emblem-logo" src="assets/img/logo-magu.png" alt="Magu Ferretería">
+    </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap stats-in">
+    <div class="stat reveal"><div class="v" data-count="4.6" data-dec="1">0<span class="u">★</span></div><div class="l">Calificación en Google</div></div>
+    <div class="stat reveal"><div class="v" data-count="447">0</div><div class="l">Opiniones verificadas</div></div>
+    <div class="stat reveal"><div class="v"><span class="u">+</span><span data-count="18">0</span></div><div class="l">Marcas líderes</div></div>
+    <div class="stat reveal"><div class="v">3</div><div class="l">Canales de atención</div></div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section class="section about" id="nosotros">
+  <div class="grid-bg" style="opacity:.25"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="idx">01 — QUIÉNES SOMOS</span><h2 style="margin-top:14px">Un aliado que transforma ideas en logros.</h2></div>
+      <p>Servicio de excelencia fundamentado en amabilidad, respeto y honestidad. Cada cliente es prioridad y cada proyecto, una meta compartida.</p>
+    </div>
+    <div class="mv">
+      <div class="mv-card reveal">
+        <span class="tag">Misión</span>
+        <h3>Soluciones confiables para cada proyecto</h3>
+        <p>Ofrecemos un servicio de excelencia que impulsa los proyectos de nuestros clientes y refuerza su confianza en nosotros, con soluciones efectivas en cada interacción.</p>
+        <p class="kicker">Ser tu aliado estratégico en la ejecución y el éxito de cada proyecto.</p>
+      </div>
+      <div class="mv-card reveal">
+        <span class="tag">Visión</span>
+        <h3>La ferretería líder de la región</h3>
+        <p>Aspiramos a ser el punto de referencia integral por nuestra capacidad de respuesta, diversidad de productos y profesionalismo, con el respaldo técnico y humano que toda obra necesita.</p>
+        <p class="kicker">El aliado que transforma ideas en logros.</p>
+      </div>
+    </div>
+    <div class="values">
+      <div class="value reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div>
+        <h4>Honestidad</h4><p>Actuamos con transparencia, rectitud y coherencia.</p>
+      </div>
+      <div class="value reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 11a4 4 0 10-8 0M3 21v-1a5 5 0 015-5h8a5 5 0 015 5v1"/></svg></div>
+        <h4>Respeto</h4><p>Relaciones cordiales, equitativas y profesionales.</p>
+      </div>
+      <div class="value reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h4>Compromiso</h4><p>Cumplimos lo que ofrecemos, con eficiencia y ética.</p>
+      </div>
+      <div class="value reveal">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg></div>
+        <h4>Amabilidad</h4><p>Un trato cálido, accesible y orientado al bienestar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section class="section marcas" id="marcas">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="idx">02 — CATÁLOGO</span><h2 style="margin-top:14px">Las marcas que respaldan tu obra.</h2></div>
+      <p>Trabajamos con los fabricantes más confiables del sector para que nunca te falte la herramienta correcta.</p>
+    </div>
+  </div>
+  <div class="marquee-mask">
+    <div class="marquee" id="m1"></div>
+    <div class="marquee rev" id="m2"></div>
+  </div>
+</section>
+
+<!-- B2B -->
+<section class="section b2b" id="b2b">
+  <div class="wrap b2b-in">
+    <div class="reveal">
+      <span class="eyebrow">03 — Mayoreo digital</span>
+      <h2>Tu almacén,<br><span class="accent">en línea 24/7.</span></h2>
+      <p class="lead">La plataforma B2B de Magu Distribuciones para clientes mayoristas: cotiza, pide y da seguimiento a tu surtido sin llamadas ni esperas. Precios de socio, historial de compras y reorden en un clic.</p>
+      <ul class="b2b-feats">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 6L9 17l-5-5"/></svg> Catálogo con precios mayoristas personalizados</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 6L9 17l-5-5"/></svg> Pedidos, reorden y seguimiento de entregas en tiempo real</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 6L9 17l-5-5"/></svg> Estado de cuenta, crédito y facturación en un solo lugar</li>
+      </ul>
+      <div class="b2b-cta">
+        <a href="#" class="btn btn-amber" id="mainB2B">
+          Entrar a la plataforma
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://wa.me/526181657941?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20compras%20y%20acceso%20B2B" class="btn btn-ghost">Solicitar acceso</a>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="dash">
+        <div class="dash-bar">
+          <span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+          <span class="url">b2b.magudistribuciones.com / pedidos</span>
+        </div>
+        <div class="dash-body">
+          <div class="dash-row"><span class="h">Panel de socio</span><span class="mini-pill">EN VIVO</span></div>
+          <div class="dash-cards">
+            <div class="dcard"><div class="k">Pedidos / mes</div><div class="v">128</div></div>
+            <div class="dcard"><div class="k">Surtido</div><div class="v">96<small>%</small></div></div>
+            <div class="dcard"><div class="k">Crédito</div><div class="v">$84k</div></div>
+          </div>
+          <div class="dash-list">
+            <div class="item"><span><strong>Disco corte 7"</strong><br><span class="sku">SKU · FIERO-DC7</span></span><span class="qty">− 40 +</span><span class="amt">$1,360</span></div>
+            <div class="item"><span><strong>Taladro 1/2" 800W</strong><br><span class="sku">SKU · TRUPER-T800</span></span><span class="qty">− 12 +</span><span class="amt">$10,188</span></div>
+            <div class="item"><span><strong>Cinta de aislar pro</strong><br><span class="sku">SKU · VOLT-CA20</span></span><span class="qty">− 200 +</span><span class="amt">$2,400</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CANALES -->
+<section class="section canales" id="canales">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="idx">04 — ATENCIÓN</span><h2 style="margin-top:14px">Habla con el área correcta, al instante.</h2></div>
+      <p>Tres canales directos por WhatsApp para resolver lo que necesitas sin rodeos.</p>
+    </div>
+    <div class="chan-grid">
+      <div class="chan reveal">
+        <span class="num">/ VENTAS</span>
+        <h3>Ventas y cotizaciones</h3>
+        <p class="desc">Productos, disponibilidad y precios para tu proyecto.</p>
+        <div class="lines">
+          <span class="line"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg> 618 158 6280</span>
+          <span class="line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg> 618 129 1764 · 618 829 5000</span>
+        </div>
+        <div class="acts">
+          <a href="https://wa.me/526181586280?text=Hola%20Magu%2C%20quiero%20cotizar%20productos" class="btn btn-wa">WhatsApp</a>
+          <a href="tel:+526181586280" class="btn btn-ghost">Llamar</a>
+        </div>
+      </div>
+      <div class="chan reveal">
+        <span class="num">/ CRÉDITO</span>
+        <h3>Crédito y cobranza</h3>
+        <p class="desc">Estados de cuenta, pagos y líneas de crédito.</p>
+        <div class="lines">
+          <span class="line"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg> 618 138 8107</span>
+        </div>
+        <div class="acts">
+          <a href="https://wa.me/526181388107?text=Hola%2C%20consulta%20de%20cr%C3%A9dito%20y%20cobranza" class="btn btn-wa">WhatsApp</a>
+          <a href="tel:+526181388107" class="btn btn-ghost">Llamar</a>
+        </div>
+      </div>
+      <div class="chan reveal">
+        <span class="num">/ COMPRAS</span>
+        <h3>Compras y proveedores</h3>
+        <p class="desc">Surtido mayorista, alta de proveedor y acceso B2B.</p>
+        <div class="lines">
+          <span class="line"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg> 618 165 7941</span>
+        </div>
+        <div class="acts">
+          <a href="https://wa.me/526181657941?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20compras%20y%20acceso%20B2B" class="btn btn-wa">WhatsApp</a>
+          <a href="#" class="btn btn-ghost">Plataforma B2B</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACION -->
+<section class="section ubic" id="ubicacion">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="idx">05 — VISÍTANOS</span><h2 style="margin-top:14px">Te esperamos en Durango.</h2></div>
+      <p>Pasa por nuestra sucursal o pídenos cómo llegar. Estamos para ayudarte.</p>
+    </div>
+    <div class="ubic-in">
+      <div class="map-frame reveal">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Magu%20Ferreter%C3%ADa%2C%20Masurio%20611%2C%20Luis%20Echeverr%C3%ADa%2C%2034250%20Durango%2C%20Dgo&output=embed"></iframe>
+      </div>
+      <div class="loc-card reveal">
+        <div><h3>Magu Ferretería</h3><span class="open-now"><span class="dotg"></span>Abierto · Cierra a las 7:00 p.m.</span></div>
+        <div class="loc-item">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="k">Dirección</div><div class="val">Masurio 611, Luis Echeverría,<br>34250 Durango, Dgo.</div></div>
+        </div>
+        <div class="loc-item">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></div>
+          <div><div class="k">Teléfono</div><div class="val">618 829 5000</div></div>
+        </div>
+        <div class="loc-item">
+          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><div class="k">Calificación</div><div class="val"><span style="color:var(--amber)">★ 4.6</span> · 447 opiniones en Google</div></div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Magu%20Ferreter%C3%ADa%2C%20Masurio%20611%2C%2034250%20Durango" target="_blank" rel="noopener" class="btn btn-amber" style="justify-content:center">
+          Cómo llegar
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="#top" class="brand"><img src="assets/img/logo-magu.png" alt="Magu"></a>
+        <p class="fslogan">Distribuciones Magu, tu ferretería de confianza.</p>
+        <div class="socials">
+          <a class="soc" href="https://www.instagram.com/maguferreterias" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a class="soc" href="https://www.facebook.com/share/1EbQaHnrTy/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h5>Navegación</h5>
+        <a href="#nosotros">Nosotros</a><a href="#marcas">Marcas</a><a href="#b2b">Plataforma B2B</a><a href="#canales">Atención</a><a href="#ubicacion">Ubicación</a>
+      </div>
+      <div class="fcol">
+        <h5>Atención</h5>
+        <a href="https://wa.me/526181586280?text=Hola%20Magu%2C%20quiero%20cotizar%20productos">Ventas · 618 158 6280</a>
+        <a href="https://wa.me/526181388107?text=Hola%2C%20consulta%20de%20cr%C3%A9dito%20y%20cobranza">Crédito · 618 138 8107</a>
+        <a href="https://wa.me/526181657941?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20compras%20y%20acceso%20B2B">Compras · 618 165 7941</a>
+      </div>
+      <div class="fcol">
+        <h5>Sucursal</h5>
+        <p>Masurio 611, Luis Echeverría<br>34250 Durango, Dgo.</p>
+        <p>Lun–Sáb · cierra 7:00 p.m.</p>
+        <a href="tel:+526188295000">618 829 5000</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span id="yr"></span> Magu Distribuciones · Tu ferretería de confianza</span>
+      <span>DURANGO, DGO · MÉXICO</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MASCOTA DELFÍN -->
+<div class="mascot-zone" id="mascotZone">
+  <div class="speech" id="speech" role="status">
+    <button class="speech-x" id="speechX" aria-label="Cerrar">✕</button>
+    <span class="st" id="speechTag">Magu te avisa</span>
+    <span class="stxt" id="speechText"></span>
+    <span class="cta-mini" id="speechCta"></span>
+  </div>
+  <div class="splash" id="splash">
+    <svg class="crown" id="crown" viewBox="0 0 60 40" fill="none">
+      <path d="M6 34 q4 -20 10 -2 q3 -22 9 -3 q4 -24 9 -2 q4 -20 9 -1 q4 -16 9 3" stroke="#9ad9ef" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="dolphin-wrap" id="dolphinWrap" title="¡Hola! Soy Magu">
+   <div class="dolphin-inner">
+    <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="d-head" x1="0.3" y1="0.1" x2="0.7" y2="1">
+          <stop offset="0" stop-color="#E4F5FB"/><stop offset=".5" stop-color="#A6DAEC"/><stop offset="1" stop-color="#5AA6C7"/>
+        </linearGradient>
+        <linearGradient id="d-belly" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FBFAF5"/><stop offset="1" stop-color="#CDE7F1"/>
+        </linearGradient>
+        <radialGradient id="d-eye" cx=".38" cy=".34" r=".75">
+          <stop offset="0" stop-color="#F2FEFF"/><stop offset=".45" stop-color="#5FE6FF"/><stop offset="1" stop-color="#157EA6"/>
+        </radialGradient>
+        <linearGradient id="d-fin" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#3A3A78"/><stop offset="1" stop-color="#2A2A5E"/>
+        </linearGradient>
+      </defs>
+      <path d="M150 196 q34 2 50 -18 q-2 22 -22 30 q16 4 30 -6 q-14 22 -42 16 q-20 -6 -24 -24z" fill="url(#d-fin)"/>
+      <path d="M96 150 q14 40 56 48 q-6 -22 -10 -44 q-22 6 -46 -4z" fill="#4C9ABD"/>
+      <path d="M138 58 q14 -30 40 -30 q-2 24 -18 40 q-12 10 -22 -10z" fill="url(#d-fin)"/>
+      <path d="M150 138 q34 6 44 34 q-26 -2 -44 -16z" fill="#3A6E8C"/>
+      <path d="M70 92 q4 -44 50 -54 q48 -10 78 26 q26 30 16 70 q-10 40 -54 48 q-44 8 -72 -22 q-22 -24 -22 -52 q-2 -8 0 -16z" fill="url(#d-head)"/>
+      <path d="M74 116 q-30 8 -50 30 q24 6 44 -4 q12 -6 14 -16z" fill="url(#d-head)"/>
+      <path d="M24 146 q20 4 36 -4 q-4 12 -20 15 q-14 2 -16 -11z" fill="#2A2A5E"/>
+      <path d="M30 142 q26 2 50 -10" stroke="#1B3B52" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round"/>
+      <path d="M86 120 q40 -16 86 6 q-6 40 -46 52 q-34 8 -52 -16 q-8 -28 12 -42z" fill="url(#d-belly)" opacity=".9"/>
+      <g stroke="#1B3B52" stroke-width="1.7" fill="none" opacity=".5" stroke-linecap="round">
+        <path d="M104 56 q44 -6 74 26"/><path d="M172 92 q14 30 4 60"/><path d="M96 150 q40 18 76 4"/>
+      </g>
+      <path d="M150 70 q22 14 24 40" stroke="#F2A93C" stroke-width="2" fill="none" opacity=".8" stroke-linecap="round"/>
+      <circle cx="92" cy="104" r="26" fill="#21314C"/>
+      <circle cx="92" cy="104" r="20" fill="url(#d-eye)"/>
+      <circle cx="92" cy="104" r="22.5" fill="none" stroke="#F2A93C" stroke-width="2.6"/>
+      <circle cx="85" cy="97" r="6.5" fill="#fff" opacity=".95"/>
+      <circle cx="99" cy="111" r="3" fill="#BEF6FF" opacity=".8"/>
+      <circle cx="160" cy="150" r="3.4" fill="#F2A93C"/>
+      <circle cx="132" cy="64" r="2.6" fill="#5FE6FF"/>
+      <circle cx="118" cy="168" r="2.6" fill="#5FE6FF"/>
+    </svg>
+   </div>
+  </div>
+</div>
+
+<a class="fab" href="https://wa.me/526181586280?text=Hola%20Magu%2C%20quiero%20cotizar%20productos" target="_blank" rel="noopener" aria-label="WhatsApp Ventas">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zM6.597 20.13c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.515 5.26l-.999 3.648 3.973-.707zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<script>
+const BRANDS = [{"name": "Truper", "src": "assets/brands/Truper.png"}, {"name": "Foset", "src": "assets/brands/Foset.png"}, {"name": "Hermex", "src": "assets/brands/Hermex.png"}, {"name": "Fiero", "src": "assets/brands/Fiero.png"}, {"name": "Klintek", "src": "assets/brands/Klintek.png"}, {"name": "Pretul", "src": "assets/brands/Pretul.png"}, {"name": "Volteck", "src": "assets/brands/Volteck.png"}, {"name": "Victorinox", "src": "assets/brands/Victorinox.png"}, {"name": "Tramontina", "src": "assets/brands/Tramontina.png"}, {"name": "Reynera", "src": "assets/brands/Reynera.png"}, {"name": "Hercules", "src": "assets/brands/Hercules.png"}, {"name": "Pennsylvania", "src": "assets/brands/Pennsylvania.png"}, {"name": "Fischer", "src": "assets/brands/Fischer.png"}, {"name": "Coflex", "src": "assets/brands/Coflex.png"}, {"name": "Sigma", "src": "assets/brands/Sigma.png"}, {"name": "ECOM", "src": "assets/brands/ECOM.png"}, {"name": "Fusi\u00f3n Epoxy", "src": "assets/brands/Fusion.png"}, {"name": "Kola Loka", "src": "assets/brands/Kola_Loka.png"}];
+// build marquees (duplicate for seamless loop)
+function chip(b){return '<div class="chip"><img src="'+b.src+'" alt="'+b.name+'" title="'+b.name+'"></div>';}
+const half = BRANDS.slice(0, Math.ceil(BRANDS.length/2));
+const half2 = BRANDS.slice(Math.ceil(BRANDS.length/2));
+const seq1 = half.concat(half).map(chip).join('');
+const seq2 = half2.concat(half2).map(chip).join('');
+document.getElementById('m1').innerHTML = seq1;
+document.getElementById('m2').innerHTML = seq2;
+
+// nav scroll state
+const nav = document.getElementById('nav');
+addEventListener('scroll', ()=> nav.classList.toggle('scrolled', scrollY > 40));
+
+// mobile menu
+const mm = document.getElementById('mobileMenu');
+document.getElementById('burger').onclick = ()=> mm.classList.add('open');
+document.getElementById('mmClose').onclick = ()=> mm.classList.remove('open');
+mm.querySelectorAll('a').forEach(a=> a.onclick=()=> mm.classList.remove('open'));
+
+// reveal on scroll
+const io = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{ el.style.transitionDelay=(i%4*0.06)+'s'; io.observe(el); });
+
+// count-up stats
+function countUp(el){
+  const target = parseFloat(el.dataset.count);
+  const dec = parseInt(el.dataset.dec||0);
+  let cur = 0; const step = target/55;
+  const tick = ()=>{ cur += step; if(cur>=target){cur=target;} el.firstChild ? null:null;
+    el.childNodes[0].nodeValue = dec? cur.toFixed(dec) : Math.round(cur);
+    if(cur<target) requestAnimationFrame(tick); };
+  tick();
+}
+const sio = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.querySelectorAll('[data-count]').forEach(countUp); sio.unobserve(e.target);} });
+},{threshold:.4});
+document.querySelectorAll('.stats').forEach(s=> sio.observe(s));
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ===== MASCOTA DELFÍN MAGU ===== */
+(function(){
+  const wrap=document.getElementById('dolphinWrap');
+  const speech=document.getElementById('speech');
+  const sTag=document.getElementById('speechTag');
+  const sText=document.getElementById('speechText');
+  const sCta=document.getElementById('speechCta');
+  const splash=document.getElementById('splash');
+  const crown=document.getElementById('crown');
+  if(!wrap) return;
+  const WA_VENTAS="https://wa.me/526181586280?text=Hola%20Magu%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n";
+
+  const MSGS=[
+    {tag:"Nuevo",  text:"¿Ya conoces nuestra nueva plataforma? Pedidos 24/7 y cotiza en línea.", cta:"Ver Plataforma B2B", href:"#b2b"},
+    {tag:"Atención", text:"Atención a cliente personalizada. Comunícate con nosotros por WhatsApp.", cta:"Abrir WhatsApp", href:WA_VENTAS},
+    {tag:"¿Sabías?", text:"Somos líderes en distribución de marca en la región.", cta:"Ver marcas", href:"#marcas"}
+  ];
+  let i=0, started=false, timer=null;
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function makeSplash(){
+    if(reduce) return;
+    crown.classList.remove('go'); void crown.offsetWidth; crown.classList.add('go');
+    for(let k=0;k<9;k++){
+      const d=document.createElement('span');
+      d.className='drop';
+      const ang=(-130 + k*(80/8)) * Math.PI/180;     // fan upward
+      const dist=34+Math.random()*30;
+      d.style.setProperty('--dx',(Math.cos(ang)*dist).toFixed(1)+'px');
+      d.style.setProperty('--dy',(Math.sin(ang)*dist).toFixed(1)+'px');
+      const sc=.5+Math.random()*.7; d.style.width=(9*sc)+'px'; d.style.height=(9*sc)+'px';
+      splash.appendChild(d);
+      requestAnimationFrame(()=>d.classList.add('go'));
+      setTimeout(()=>d.remove(),1000);
+    }
+  }
+  function render(){
+    const m=MSGS[i];
+    sText.style.opacity=0; sCta.style.opacity=0;
+    setTimeout(()=>{
+      sTag.textContent=m.tag; sText.textContent=" "+m.text; sCta.textContent=m.cta;
+      speech.dataset.href=m.href;
+      sText.style.opacity=1; sCta.style.opacity=1;
+    },180);
+  }
+  function nextMsg(){
+    i=(i+1)%MSGS.length;
+    render();
+    makeSplash();
+    wrap.classList.remove('nudge'); void wrap.offsetWidth; wrap.classList.add('nudge');
+  }
+  function go(href){
+    if(!href) return;
+    if(href.charAt(0)==='#'){ const el=document.querySelector(href); if(el) el.scrollIntoView({behavior:'smooth'}); }
+    else { window.open(href,'_blank','noopener'); }
+  }
+  function start(){
+    if(started) return; started=true;
+    wrap.classList.add('show');
+    makeSplash();
+    render();
+    setTimeout(()=>speech.classList.add('show'), 650);
+    timer=setInterval(nextMsg, 5000);   // un mensaje cada 5 s
+  }
+  // interacciones
+  speech.addEventListener('click',e=>{ if(e.target.id==='speechX') return; go(speech.dataset.href); });
+  document.getElementById('speechX').addEventListener('click',e=>{
+    e.stopPropagation(); speech.classList.remove('show'); clearInterval(timer);
+  });
+  wrap.addEventListener('click',()=>{ makeSplash(); go(WA_VENTAS); });
+
+  // aparece 5 s después de cargar la página
+  setTimeout(start, 5000);
+})();
+</script>
+</body>
+</html>
