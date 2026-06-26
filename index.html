@@ -760,40 +760,95 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
    <div class="dolphin-inner">
     <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="d-body" x1="0.15" y1="0.05" x2="0.75" y2="1">
-          <stop offset="0" stop-color="#D2DEEB"/><stop offset="1" stop-color="#90A6C0"/>
+        <linearGradient id="d-metal" x1="0.2" y1="0" x2="0.7" y2="1">
+          <stop offset="0" stop-color="#ECEFF4"/><stop offset=".35" stop-color="#C4CAD4"/><stop offset=".7" stop-color="#949CAA"/><stop offset="1" stop-color="#6B7280"/>
+        </linearGradient>
+        <linearGradient id="d-metaldark" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#9AA2AE"/><stop offset="1" stop-color="#565D69"/>
         </linearGradient>
         <linearGradient id="d-belly" x1="0" y1="0" x2="0.3" y2="1">
-          <stop offset="0" stop-color="#FCFEFF"/><stop offset="1" stop-color="#DCE8F1"/>
+          <stop offset="0" stop-color="#F4F6F9"/><stop offset="1" stop-color="#C6CDD7"/>
         </linearGradient>
-        <linearGradient id="d-finc" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#A6BAD0"/><stop offset="1" stop-color="#7E96B2"/>
-        </linearGradient>
+        <radialGradient id="d-glow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#DFFAFF"/><stop offset=".45" stop-color="#46C8F4"/><stop offset="1" stop-color="#0E6FA8"/>
+        </radialGradient>
+        <radialGradient id="d-halo" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#7FECFF" stop-opacity=".85"/><stop offset="1" stop-color="#7FECFF" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="d-eye" cx=".4" cy=".34" r=".7">
+          <stop offset="0" stop-color="#EAFCFF"/><stop offset=".4" stop-color="#46BEF2"/><stop offset="1" stop-color="#0E4E84"/>
+        </radialGradient>
+        <clipPath id="bodyClip"><path d="M92 72 C 126 66 154 82 170 112 C 182 136 186 156 185 174 C 184 184 180 190 172 192 C 160 194 152 192 146 186 C 130 180 112 180 96 172 C 82 165 72 160 64 156 C 54 152 40 153 26 154 C 28 116 48 82 92 72 Z"/></clipPath>
       </defs>
-      <g stroke="#2A2A5E" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round">
-        <!-- aleta dorsal -->
-        <path d="M142 94 C 162 64 186 56 198 60 C 190 80 170 100 160 116 Z" fill="url(#d-finc)"/>
-        <!-- aleta caudal -->
-        <path d="M176 188 C 196 178 222 178 236 193 C 224 202 206 204 194 201 C 205 211 210 226 204 238 C 192 230 183 214 178 198 Z" fill="url(#d-finc)"/>
-        <!-- cuerpo -->
-        <path d="M86 80 C 116 73 146 86 163 114 C 178 138 187 162 191 184 C 193 191 193 196 190 198 C 184 201 176 200 168 195 C 146 185 122 182 102 171 C 88 164 76 158 66 152 C 58 148 44 151 28 152 C 30 120 48 88 86 80 Z" fill="url(#d-body)"/>
+
+      <!-- aletas con contorno -->
+      <g stroke="#2A2A5E" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M138 96 C 158 66 184 58 196 62 C 188 84 168 104 156 118 Z" fill="url(#d-metaldark)"/>
+        <path d="M166 176 C 188 165 214 165 228 180 C 216 189 198 191 188 189 C 198 199 203 214 198 226 C 185 218 176 200 170 184 Z" fill="url(#d-metaldark)"/>
       </g>
-      <!-- vientre -->
-      <path d="M64 150 C 92 158 132 168 170 188 C 180 194 182 197 174 198 C 144 196 110 188 86 174 C 72 166 64 159 64 150 Z" fill="url(#d-belly)"/>
-      <!-- aleta pectoral -->
-      <path d="M96 168 C 84 180 74 200 78 220 C 92 214 106 192 110 170 Z" fill="url(#d-finc)" stroke="#2A2A5E" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
-      <!-- boca abierta -->
-      <path d="M28 152 C 42 151 56 150 70 150 C 60 157 50 162 42 165 C 36 161 30 157 28 152 Z" fill="#E86B86" stroke="#2A2A5E" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M43 164 C 51 161 60 157 68 151 C 66 158 57 163 48 166 Z" fill="#FCFEFF"/>
-      <!-- brillo del melón -->
-      <ellipse cx="104" cy="80" rx="13" ry="7" fill="#EAF2F8" opacity=".7" transform="rotate(-22 104 80)"/>
-      <!-- mejilla -->
-      <ellipse cx="108" cy="124" rx="9" ry="6" fill="#FF8FA6" opacity=".75"/>
-      <!-- ojo -->
+      <!-- acentos LED en aletas -->
+      <g transform="rotate(48 182 78)"><rect x="174" y="73" width="15" height="6" rx="3" fill="url(#d-glow)" stroke="#13507E" stroke-width="1"/></g>
+      <path d="M168 72 C 178 78 184 88 186 100" stroke="#3A414E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <g stroke="#3A414E" stroke-width="1.8" fill="none" stroke-linecap="round">
+        <path d="M194 180 C 204 180 214 183 222 188"/>
+        <path d="M190 196 C 194 206 196 215 195 223"/>
+      </g>
+      <rect x="200" y="184" width="10" height="4.5" rx="2" fill="url(#d-glow)" transform="rotate(12 200 184)"/>
+      <rect x="189" y="210" width="4.5" height="9" rx="2" fill="url(#d-glow)"/>
+
+      <!-- cuerpo -->
+      <path d="M92 72 C 126 66 154 82 170 112 C 182 136 186 156 185 174 C 184 184 180 190 172 192 C 160 194 152 192 146 186 C 130 180 112 180 96 172 C 82 165 72 160 64 156 C 54 152 40 153 26 154 C 28 116 48 82 92 72 Z" fill="url(#d-metal)" stroke="#2A2A5E" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+
+      <!-- detalles dentro del cuerpo -->
+      <g clip-path="url(#bodyClip)">
+        <path d="M58 148 C 90 158 132 166 176 184 C 188 192 188 198 176 198 C 142 196 106 188 82 174 C 68 166 58 156 58 148 Z" fill="url(#d-belly)"/>
+        <g fill="none" stroke="#5C6470" stroke-width="2" opacity=".85" stroke-linecap="round">
+          <path d="M60 96 C 66 118 66 138 58 156"/>
+          <path d="M105 74 C 100 110 102 142 92 172"/>
+          <path d="M152 102 C 162 134 164 162 158 188"/>
+          <path d="M94 128 C 126 124 154 132 184 152"/>
+        </g>
+        <g transform="rotate(27 156 158)">
+          <ellipse cx="156" cy="158" rx="25" ry="11" fill="url(#d-halo)"/>
+          <rect x="138" y="152" width="36" height="12" rx="6" fill="url(#d-glow)" stroke="#13507E" stroke-width="1.4"/>
+          <rect x="144" y="155" width="4" height="6" rx="1" fill="#EAFCFF" opacity=".9"/>
+          <rect x="152" y="155" width="4" height="6" rx="1" fill="#EAFCFF" opacity=".9"/>
+          <rect x="160" y="155" width="4" height="6" rx="1" fill="#EAFCFF" opacity=".9"/>
+        </g>
+        <g fill="#4E5663">
+          <circle cx="70" cy="98" r="2.4"/><circle cx="118" cy="88" r="2.4"/>
+          <circle cx="150" cy="118" r="2.4"/><circle cx="96" cy="160" r="2.4"/>
+          <circle cx="168" cy="166" r="2.4"/><circle cx="132" cy="168" r="2.4"/>
+        </g>
+      </g>
+
+      <!-- aleta pectoral robótica -->
+      <path d="M94 162 C 82 174 72 194 76 212 C 90 206 104 184 108 164 Z" fill="url(#d-metaldark)" stroke="#2A2A5E" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M86 182 C 82 190 80 200 82 208" stroke="#3A414E" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- junta mecánica del flipper -->
+      <circle cx="98" cy="164" r="7" fill="#B6BDC8" stroke="#2A2A5E" stroke-width="2.4"/>
+      <circle cx="98" cy="164" r="2.6" fill="#4E5663"/>
+
+      <!-- puerto / lente mecánico -->
+      <circle cx="128" cy="132" r="16" fill="#C0C7D1" stroke="#2A2A5E" stroke-width="2.6"/>
+      <circle cx="128" cy="132" r="12" fill="#5C6470"/>
+      <ellipse cx="127" cy="131" rx="13" ry="8" fill="url(#d-halo)"/>
+      <circle cx="128" cy="132" r="8" fill="url(#d-glow)"/>
+      <circle cx="125" cy="129" r="2.5" fill="#EAFCFF"/>
+
+      <!-- brillo metálico del melón -->
+      <ellipse cx="94" cy="86" rx="15" ry="5.5" fill="#FFFFFF" opacity=".3" transform="rotate(-20 94 86)"/>
+
+      <!-- sonrisa -->
+      <path d="M46 148 C 58 155 72 154 82 146" stroke="#2A2A5E" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+
+      <!-- OJO robótico brillante -->
       <g>
-        <ellipse cx="80" cy="108" rx="13" ry="14.5" fill="#2A2A5E"/>
-        <ellipse cx="75" cy="102" rx="4.6" ry="5.4" fill="#fff"/>
-        <circle cx="84" cy="114" r="2.3" fill="#fff" opacity=".9"/>
+        <ellipse cx="78" cy="108" rx="15" ry="16.5" fill="#1A2740"/>
+        <ellipse cx="78" cy="108" rx="11.5" ry="13" fill="url(#d-eye)"/>
+        <ellipse cx="73" cy="102" rx="4.3" ry="5.3" fill="#fff"/>
+        <circle cx="83" cy="115" r="2.4" fill="#CFF6FF"/>
+        <ellipse cx="78" cy="108" rx="15" ry="16.5" fill="none" stroke="#2A2A5E" stroke-width="2"/>
       </g>
     </svg>
    </div>
