@@ -760,40 +760,41 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
    <div class="dolphin-inner">
     <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="d-head" x1="0.3" y1="0.1" x2="0.7" y2="1">
-          <stop offset="0" stop-color="#E4F5FB"/><stop offset=".5" stop-color="#A6DAEC"/><stop offset="1" stop-color="#5AA6C7"/>
+        <linearGradient id="d-body" x1="0.15" y1="0.05" x2="0.75" y2="1">
+          <stop offset="0" stop-color="#D2DEEB"/><stop offset="1" stop-color="#90A6C0"/>
         </linearGradient>
-        <linearGradient id="d-belly" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#FBFAF5"/><stop offset="1" stop-color="#CDE7F1"/>
+        <linearGradient id="d-belly" x1="0" y1="0" x2="0.3" y2="1">
+          <stop offset="0" stop-color="#FCFEFF"/><stop offset="1" stop-color="#DCE8F1"/>
         </linearGradient>
-        <radialGradient id="d-eye" cx=".38" cy=".34" r=".75">
-          <stop offset="0" stop-color="#F2FEFF"/><stop offset=".45" stop-color="#5FE6FF"/><stop offset="1" stop-color="#157EA6"/>
-        </radialGradient>
-        <linearGradient id="d-fin" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#3A3A78"/><stop offset="1" stop-color="#2A2A5E"/>
+        <linearGradient id="d-finc" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#A6BAD0"/><stop offset="1" stop-color="#7E96B2"/>
         </linearGradient>
       </defs>
-      <path d="M150 196 q34 2 50 -18 q-2 22 -22 30 q16 4 30 -6 q-14 22 -42 16 q-20 -6 -24 -24z" fill="url(#d-fin)"/>
-      <path d="M96 150 q14 40 56 48 q-6 -22 -10 -44 q-22 6 -46 -4z" fill="#4C9ABD"/>
-      <path d="M138 58 q14 -30 40 -30 q-2 24 -18 40 q-12 10 -22 -10z" fill="url(#d-fin)"/>
-      <path d="M150 138 q34 6 44 34 q-26 -2 -44 -16z" fill="#3A6E8C"/>
-      <path d="M70 92 q4 -44 50 -54 q48 -10 78 26 q26 30 16 70 q-10 40 -54 48 q-44 8 -72 -22 q-22 -24 -22 -52 q-2 -8 0 -16z" fill="url(#d-head)"/>
-      <path d="M74 116 q-30 8 -50 30 q24 6 44 -4 q12 -6 14 -16z" fill="url(#d-head)"/>
-      <path d="M24 146 q20 4 36 -4 q-4 12 -20 15 q-14 2 -16 -11z" fill="#2A2A5E"/>
-      <path d="M30 142 q26 2 50 -10" stroke="#1B3B52" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round"/>
-      <path d="M86 120 q40 -16 86 6 q-6 40 -46 52 q-34 8 -52 -16 q-8 -28 12 -42z" fill="url(#d-belly)" opacity=".9"/>
-      <g stroke="#1B3B52" stroke-width="1.7" fill="none" opacity=".5" stroke-linecap="round">
-        <path d="M104 56 q44 -6 74 26"/><path d="M172 92 q14 30 4 60"/><path d="M96 150 q40 18 76 4"/>
+      <g stroke="#2A2A5E" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round">
+        <!-- aleta dorsal -->
+        <path d="M142 94 C 162 64 186 56 198 60 C 190 80 170 100 160 116 Z" fill="url(#d-finc)"/>
+        <!-- aleta caudal -->
+        <path d="M176 188 C 196 178 222 178 236 193 C 224 202 206 204 194 201 C 205 211 210 226 204 238 C 192 230 183 214 178 198 Z" fill="url(#d-finc)"/>
+        <!-- cuerpo -->
+        <path d="M86 80 C 116 73 146 86 163 114 C 178 138 187 162 191 184 C 193 191 193 196 190 198 C 184 201 176 200 168 195 C 146 185 122 182 102 171 C 88 164 76 158 66 152 C 58 148 44 151 28 152 C 30 120 48 88 86 80 Z" fill="url(#d-body)"/>
       </g>
-      <path d="M150 70 q22 14 24 40" stroke="#F2A93C" stroke-width="2" fill="none" opacity=".8" stroke-linecap="round"/>
-      <circle cx="92" cy="104" r="26" fill="#21314C"/>
-      <circle cx="92" cy="104" r="20" fill="url(#d-eye)"/>
-      <circle cx="92" cy="104" r="22.5" fill="none" stroke="#F2A93C" stroke-width="2.6"/>
-      <circle cx="85" cy="97" r="6.5" fill="#fff" opacity=".95"/>
-      <circle cx="99" cy="111" r="3" fill="#BEF6FF" opacity=".8"/>
-      <circle cx="160" cy="150" r="3.4" fill="#F2A93C"/>
-      <circle cx="132" cy="64" r="2.6" fill="#5FE6FF"/>
-      <circle cx="118" cy="168" r="2.6" fill="#5FE6FF"/>
+      <!-- vientre -->
+      <path d="M64 150 C 92 158 132 168 170 188 C 180 194 182 197 174 198 C 144 196 110 188 86 174 C 72 166 64 159 64 150 Z" fill="url(#d-belly)"/>
+      <!-- aleta pectoral -->
+      <path d="M96 168 C 84 180 74 200 78 220 C 92 214 106 192 110 170 Z" fill="url(#d-finc)" stroke="#2A2A5E" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- boca abierta -->
+      <path d="M28 152 C 42 151 56 150 70 150 C 60 157 50 162 42 165 C 36 161 30 157 28 152 Z" fill="#E86B86" stroke="#2A2A5E" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M43 164 C 51 161 60 157 68 151 C 66 158 57 163 48 166 Z" fill="#FCFEFF"/>
+      <!-- brillo del melón -->
+      <ellipse cx="104" cy="80" rx="13" ry="7" fill="#EAF2F8" opacity=".7" transform="rotate(-22 104 80)"/>
+      <!-- mejilla -->
+      <ellipse cx="108" cy="124" rx="9" ry="6" fill="#FF8FA6" opacity=".75"/>
+      <!-- ojo -->
+      <g>
+        <ellipse cx="80" cy="108" rx="13" ry="14.5" fill="#2A2A5E"/>
+        <ellipse cx="75" cy="102" rx="4.6" ry="5.4" fill="#fff"/>
+        <circle cx="84" cy="114" r="2.3" fill="#fff" opacity=".9"/>
+      </g>
     </svg>
    </div>
    </div>
