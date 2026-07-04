@@ -439,37 +439,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
 }
 
 }
-
-/* ===== DELFINES NADANDO (hero · fisica de porpoising, tenues como las olas) ===== */
-.school{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.dfin{position:absolute;left:0;animation:dswim var(--dur) linear infinite;animation-delay:var(--del)}
-.dfin svg{display:block;width:100%;height:100%;overflow:visible}
-.dbob{width:100%;height:100%;animation:dbob var(--bob) cubic-bezier(.37,0,.63,1) infinite;animation-delay:var(--bdel,0s)}
-.dfin .tailg{transform-box:fill-box;transform-origin:100% 55%;
-  animation:dflick calc(var(--bob) / 3.2) cubic-bezier(.37,0,.63,1) infinite;animation-delay:var(--bdel,0s)}
-.dfin.f1{top:22%;width:100px;height:43px;--dur:38s;--del:-8s;--bob:4.2s}
-.dfin.f2{top:39%;width:70px;height:30px;--dur:28s;--del:-22s;--bob:3.4s;--bdel:-1.3s}
-.dfin.f3{top:55%;width:50px;height:21px;--dur:32s;--del:-15s;--bob:3.8s;--bdel:-2.1s}
-@keyframes dswim{
-  0%{transform:translateX(-180px) scaleX(1)}
-  46%{transform:translateX(calc(100vw + 70px)) scaleX(1)}
-  50%{transform:translateX(calc(100vw + 70px)) scaleX(-1)}
-  96%{transform:translateX(-180px) scaleX(-1)}
-  100%{transform:translateX(-180px) scaleX(1)}
 }
-/* cabeceo sigue la pendiente: nariz arriba al subir, nivelado en cresta y valle */
-@keyframes dbob{
-  0%,100%{transform:translateY(0) rotate(0deg)}
-  25%{transform:translateY(-4.5px) rotate(-4deg)}
-  50%{transform:translateY(-9px) rotate(0deg)}
-  75%{transform:translateY(-4.5px) rotate(3.5deg)}
-}
-@keyframes dflick{
-  0%,100%{transform:rotate(4.5deg)}
-  50%{transform:rotate(-5.5deg)}
-}
-@media(prefers-reduced-motion:reduce){.school{display:none}}
-@media(max-width:560px){.dfin.f1{width:70px;height:30px}.dfin.f3{display:none}}
 </style>
 </head>
 <body>
@@ -525,11 +495,6 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
   <div class="grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow two"></div>
-  <div class="school" aria-hidden="true">
-    <div class="dfin f1"><div class="dbob"><svg viewBox="0 0 140 60" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="tailg"><path d="M26 27.2 C20 22.5 13.5 19.5 5.5 18.5 C10 23 12.5 27 13 30.2 C9 33.5 6.5 38.5 6 44.5 C12.5 40.5 19 37.5 25.5 36 C23 33 22 30 26 27.2 Z" fill="#8FF1FF" fill-opacity=".11"/></g><path d="M136 29.5 C133 27.5 128.5 26.6 124 26.4 C119 22.5 113 19.2 106 17.6 C97 15.4 88 14.4 79 14.2 C77.5 9.5 73 4.5 66 2 C68.5 6.5 69.5 10.5 68 14.4 C56 15 44 17 34 20.5 C29 22.4 25 24.6 22.5 26.8 C25.5 30.4 30 33.6 36 36.2 C46 40.4 58 42.6 68 43 C70 47.5 67.5 52.5 63 56 C70.5 54.5 76 50.5 78 45.5 C90 44.5 102 41.5 112 37.5 C117 35.6 121 33.8 124 32.2 C120.5 31.9 117.5 31.4 115.5 30.6 C122 30.9 129 30.6 136 29.5 Z M107 23.2 a1.9 1.9 0 1 0 .1 0 Z" fill="#8FF1FF" fill-opacity=".11" fill-rule="evenodd"/></svg></div></div>
-    <div class="dfin f2"><div class="dbob"><svg viewBox="0 0 140 60" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="tailg"><path d="M26 27.2 C20 22.5 13.5 19.5 5.5 18.5 C10 23 12.5 27 13 30.2 C9 33.5 6.5 38.5 6 44.5 C12.5 40.5 19 37.5 25.5 36 C23 33 22 30 26 27.2 Z" fill="#37B6DE" fill-opacity=".15"/></g><path d="M136 29.5 C133 27.5 128.5 26.6 124 26.4 C119 22.5 113 19.2 106 17.6 C97 15.4 88 14.4 79 14.2 C77.5 9.5 73 4.5 66 2 C68.5 6.5 69.5 10.5 68 14.4 C56 15 44 17 34 20.5 C29 22.4 25 24.6 22.5 26.8 C25.5 30.4 30 33.6 36 36.2 C46 40.4 58 42.6 68 43 C70 47.5 67.5 52.5 63 56 C70.5 54.5 76 50.5 78 45.5 C90 44.5 102 41.5 112 37.5 C117 35.6 121 33.8 124 32.2 C120.5 31.9 117.5 31.4 115.5 30.6 C122 30.9 129 30.6 136 29.5 Z M107 23.2 a1.9 1.9 0 1 0 .1 0 Z" fill="#37B6DE" fill-opacity=".15" fill-rule="evenodd"/></svg></div></div>
-    <div class="dfin f3"><div class="dbob"><svg viewBox="0 0 140 60" fill="none" xmlns="http://www.w3.org/2000/svg"><g class="tailg"><path d="M26 27.2 C20 22.5 13.5 19.5 5.5 18.5 C10 23 12.5 27 13 30.2 C9 33.5 6.5 38.5 6 44.5 C12.5 40.5 19 37.5 25.5 36 C23 33 22 30 26 27.2 Z" fill="#8FF1FF" fill-opacity=".08"/></g><path d="M136 29.5 C133 27.5 128.5 26.6 124 26.4 C119 22.5 113 19.2 106 17.6 C97 15.4 88 14.4 79 14.2 C77.5 9.5 73 4.5 66 2 C68.5 6.5 69.5 10.5 68 14.4 C56 15 44 17 34 20.5 C29 22.4 25 24.6 22.5 26.8 C25.5 30.4 30 33.6 36 36.2 C46 40.4 58 42.6 68 43 C70 47.5 67.5 52.5 63 56 C70.5 54.5 76 50.5 78 45.5 C90 44.5 102 41.5 112 37.5 C117 35.6 121 33.8 124 32.2 C120.5 31.9 117.5 31.4 115.5 30.6 C122 30.9 129 30.6 136 29.5 Z M107 23.2 a1.9 1.9 0 1 0 .1 0 Z" fill="#8FF1FF" fill-opacity=".08" fill-rule="evenodd"/></svg></div></div>
-  </div>
   <div class="wrap hero-in">
     <div class="hero-copy">
       <span class="eyebrow reveal">Ferretería · Durango, Dgo.</span>
