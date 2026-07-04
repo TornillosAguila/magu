@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Distribuciones Magu — Tu ferretería de confianza</title>
-<meta name="description" content="Magu Distribuciones, tu ferretería de confianza en Durango. Más de 16 marcas líderes, plataforma B2B de pedidos mayoristas y atención por WhatsApp.">
-<link rel="canonical" href="https://tornillosaguila.github.io/magu/">
+<title>Magu Ferretería — Tu ferretería de confianza</title>
+<meta name="description" content="Magu Ferretería, tu ferretería de confianza en Durango. Más de 16 marcas líderes, plataforma B2B de pedidos mayoristas y atención por WhatsApp.">
+<link rel="canonical" href="https://magudistribuciones.com/">
 <meta name="theme-color" content="#0F0F2E">
 <link rel="icon" type="image/png" href="assets/img/logo-magu.png">
 <link rel="preload" as="image" href="assets/img/logo-magu.png" fetchpriority="high">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Distribuciones Magu — Tu ferretería de confianza">
+<meta property="og:title" content="Magu Ferretería — Tu ferretería de confianza">
 <meta property="og:description" content="Ferretería en Durango con más de 16 marcas líderes, plataforma B2B de pedidos mayoristas y atención directa por WhatsApp.">
-<meta property="og:url" content="https://tornillosaguila.github.io/magu/">
-<meta property="og:image" content="https://tornillosaguila.github.io/magu/assets/img/logo-magu.png">
+<meta property="og:url" content="https://magudistribuciones.com/">
+<meta property="og:image" content="https://magudistribuciones.com/assets/img/logo-magu.png">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Distribuciones Magu — Tu ferretería de confianza">
+<meta name="twitter:title" content="Magu Ferretería — Tu ferretería de confianza">
 <meta name="twitter:description" content="Ferretería en Durango: 16 marcas líderes, plataforma B2B y atención por WhatsApp.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"HardwareStore","name":"Distribuciones Magu","alternateName":"Magu Ferretería","slogan":"Tu ferretería de confianza","url":"https://tornillosaguila.github.io/magu/","image":"https://tornillosaguila.github.io/magu/assets/img/logo-magu.png","telephone":"+52 618 829 5000","address":{"@type":"PostalAddress","streetAddress":"Masurio 611, Luis Echeverría","addressLocality":"Durango","addressRegion":"Durango","postalCode":"34250","addressCountry":"MX"},"geo":{"@type":"GeoCoordinates","latitude":24.0277,"longitude":-104.6532},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":"447"},"sameAs":["https://www.instagram.com/maguferreterias","https://www.facebook.com/share/1EbQaHnrTy/"]}
+{"@context":"https://schema.org","@type":"HardwareStore","name":"Magu Ferretería","alternateName":"Distribuciones Magu","slogan":"Tu ferretería de confianza","url":"https://magudistribuciones.com/","image":"https://magudistribuciones.com/assets/img/logo-magu.png","telephone":"+52 618 829 5000","address":{"@type":"PostalAddress","streetAddress":"Masurio 611, Luis Echeverría","addressLocality":"Durango","addressRegion":"Durango","postalCode":"34250","addressCountry":"MX"},"geo":{"@type":"GeoCoordinates","latitude":24.0277,"longitude":-104.6532},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.6","reviewCount":"447"},"sameAs":["https://www.instagram.com/maguferreterias","https://www.facebook.com/share/1EbQaHnrTy/"]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -437,6 +437,25 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
   .ambient .breath{animation:none;opacity:.3}
   .ambient .l1,.ambient .l2,.ambient .l3{animation:none}
 }
+
+/* ===== DELFINES NADANDO (hero, tenues como las olas) ===== */
+.school{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.dfin{position:absolute;left:0;animation:dswim var(--dur) linear infinite;animation-delay:var(--del)}
+.dfin svg{display:block;width:100%;height:100%}
+.dbob{width:100%;height:100%;animation:dbob var(--bob) ease-in-out infinite}
+.dfin.f1{top:23%;width:92px;height:45px;--dur:36s;--del:-7s;--bob:3.9s}
+.dfin.f2{top:39%;width:64px;height:31px;--dur:27s;--del:-21s;--bob:3.1s}
+.dfin.f3{top:54%;width:46px;height:23px;--dur:31s;--del:-14s;--bob:3.5s}
+@keyframes dswim{
+  0%{transform:translateX(-160px) scaleX(1)}
+  46%{transform:translateX(calc(100vw + 60px)) scaleX(1)}
+  50%{transform:translateX(calc(100vw + 60px)) scaleX(-1)}
+  96%{transform:translateX(-160px) scaleX(-1)}
+  100%{transform:translateX(-160px) scaleX(1)}
+}
+@keyframes dbob{0%,100%{transform:translateY(0) rotate(2.5deg)}50%{transform:translateY(-8px) rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){.school{display:none}}
+@media(max-width:560px){.dfin.f1{width:64px;height:31px}.dfin.f3{display:none}}
 </style>
 </head>
 <body>
@@ -460,7 +479,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
   <div class="wrap nav-in">
     <a href="#top" class="brand">
       <img src="assets/img/logo-magu.png" alt="Magu">
-      <div class="bt">MAGU<span>Distribuciones</span></div>
+      <div class="bt">MAGU<span>Ferretería</span></div>
     </a>
     <div class="nav-links">
       <a href="#nosotros">Nosotros</a>
@@ -492,11 +511,16 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
   <div class="grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow two"></div>
+  <div class="school" aria-hidden="true">
+    <div class="dfin f1"><div class="dbob"><svg viewBox="0 0 122 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M119 31 C110 23 98 17.5 84 15.5 C80 15 76 14.2 71 13.8 C69 8 64 3.5 57 2 C59.5 6.5 60.5 10.5 59 13.8 C44 15 30 18.5 20 24 C16 20 10 15.5 3 14 C6.5 19.5 8.5 24 8.5 28 C5 31 2.5 36 2 42 C7 38.5 12 36.5 16.5 36 C23 41.5 33 45.5 44 47 C48 51 54 54.5 61 55.5 C58.5 52 57.2 49.5 57.8 47.4 C74 47.5 92 43 106 36.5 C111 34.5 116 32.8 119 31 Z" fill="#8FF1FF" fill-opacity=".11"/></svg></div></div>
+    <div class="dfin f2"><div class="dbob"><svg viewBox="0 0 122 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M119 31 C110 23 98 17.5 84 15.5 C80 15 76 14.2 71 13.8 C69 8 64 3.5 57 2 C59.5 6.5 60.5 10.5 59 13.8 C44 15 30 18.5 20 24 C16 20 10 15.5 3 14 C6.5 19.5 8.5 24 8.5 28 C5 31 2.5 36 2 42 C7 38.5 12 36.5 16.5 36 C23 41.5 33 45.5 44 47 C48 51 54 54.5 61 55.5 C58.5 52 57.2 49.5 57.8 47.4 C74 47.5 92 43 106 36.5 C111 34.5 116 32.8 119 31 Z" fill="#37B6DE" fill-opacity=".14"/></svg></div></div>
+    <div class="dfin f3"><div class="dbob"><svg viewBox="0 0 122 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M119 31 C110 23 98 17.5 84 15.5 C80 15 76 14.2 71 13.8 C69 8 64 3.5 57 2 C59.5 6.5 60.5 10.5 59 13.8 C44 15 30 18.5 20 24 C16 20 10 15.5 3 14 C6.5 19.5 8.5 24 8.5 28 C5 31 2.5 36 2 42 C7 38.5 12 36.5 16.5 36 C23 41.5 33 45.5 44 47 C48 51 54 54.5 61 55.5 C58.5 52 57.2 49.5 57.8 47.4 C74 47.5 92 43 106 36.5 C111 34.5 116 32.8 119 31 Z" fill="#8FF1FF" fill-opacity=".08"/></svg></div></div>
+  </div>
   <div class="wrap hero-in">
     <div class="hero-copy">
       <span class="eyebrow reveal">Ferretería · Durango, Dgo.</span>
       <h1 class="reveal">Tu proyecto,<br>con respaldo<br><span class="accent">de confianza.</span></h1>
-      <p class="slogan reveal"><b>Distribuciones Magu</b>, tu ferretería de confianza. Insumos, herramientas y las marcas líderes que tu obra necesita.</p>
+      <p class="slogan reveal"><b>Magu Ferretería</b>, tu ferretería de confianza. Insumos, herramientas y las marcas líderes que tu obra necesita.</p>
       <div class="hero-cta reveal">
         <a href="https://maguferreteria.b2bgo.com.mx/login" target="_blank" rel="noopener" class="btn btn-amber" id="heroB2B">
           Plataforma B2B
@@ -608,7 +632,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
     <div class="reveal">
       <span class="eyebrow">03 — Mayoreo digital</span>
       <h2>Tu almacén,<br><span class="accent">en línea 24/7.</span></h2>
-      <p class="lead">La plataforma B2B de Magu Distribuciones para clientes mayoristas: cotiza, pide y da seguimiento a tu surtido sin llamadas ni esperas. Precios de socio, historial de compras y reorden en un clic.</p>
+      <p class="lead">La plataforma B2B de Magu Ferretería para clientes mayoristas: cotiza, pide y da seguimiento a tu surtido sin llamadas ni esperas. Precios de socio, historial de compras y reorden en un clic.</p>
       <ul class="b2b-feats">
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 6L9 17l-5-5"/></svg> Catálogo con precios mayoristas personalizados</li>
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 6L9 17l-5-5"/></svg> Pedidos, reorden y seguimiento de entregas en tiempo real</li>
@@ -736,7 +760,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
     <div class="foot-top">
       <div>
         <a href="#top" class="brand"><img src="assets/img/logo-magu.png" alt="Magu"></a>
-        <p class="fslogan">Distribuciones Magu, tu ferretería de confianza.</p>
+        <p class="fslogan">Magu Ferretería, tu ferretería de confianza.</p>
         <div class="socials">
           <a class="soc" href="https://www.instagram.com/maguferreterias" target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
@@ -764,7 +788,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
       </div>
     </div>
     <div class="foot-bot">
-      <span>© <span id="yr"></span> Magu Distribuciones · Tu ferretería de confianza</span>
+      <span>© <span id="yr"></span> Magu Ferretería · Tu ferretería de confianza</span>
       <span>DURANGO, DGO · MÉXICO</span>
     </div>
   </div>
@@ -786,7 +810,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.02;letter-spacing
    </div>
    <div class="dolphin-flip" id="dolphinFlip">
    <div class="dolphin-inner">
-    <img class="dolphin-img" src="assets/magu-mascota.png" alt="Magu, mascota robot delfin de Distribuciones Magu" width="380" height="321" decoding="async">
+    <img class="dolphin-img" src="assets/magu-mascota.png" alt="Magu, mascota robot delfin de Magu Ferretería" width="380" height="321" decoding="async">
    </div>
    </div>
   </div>
