@@ -13,6 +13,7 @@ El sitio destaca el diferenciador principal del negocio: **surtir material de co
 - **Un solo archivo** (`index.html`). No necesita build ni instalación: Tailwind CSS se carga por CDN y las fuentes desde Google Fonts.
 - **8 secciones**: navegación flotante, hero, el problema, solución/servicios, nosotros (misión, visión y valores), testimonios con métricas reales, formas de comprar, preguntas frecuentes (acordeón) y footer con datos de contacto.
 - **Julis, la mascota** 🧱 — una bolsa de cemento kawaii dibujada en SVG que se pasea por la página dando consejos con datos reales del negocio. Al cambiar de lugar **se hace polvo** (efecto de partículas de cemento en `<canvas>`) y se materializa en su nueva posición. Se puede cerrar con la "×" y respeta `prefers-reduced-motion`.
+- **Modo claro / oscuro** 🌗 — botón en la barra de navegación para cambiar de tema. La preferencia se guarda en el navegador (`localStorage`) y se aplica sin parpadeo al recargar. La paleta clara usa un crema cálido con tarjetas blancas y el mismo rojo de marca, cuidada para mantener contraste y armonía.
 - **Animaciones**: aparición al hacer scroll (IntersectionObserver), marquee de marcas, micro-interacciones y menú móvil animado.
 - **Colorimetría**: base oscura, rojo de marca (#E11B22) y blanco cálido, con tipografías Archivo (display), Plus Jakarta Sans (texto) y Space Grotesk (detalles).
 - **Botón flotante de WhatsApp** siempre visible.
@@ -50,7 +51,7 @@ Como todo vive en `index.html`, no hace falta ningún paso de compilación.
 - **Teléfono / WhatsApp:** 675 105 7603 (también 457 104 0446)
 - **Correo:** ferrelaza7@hotmail.com
 - **Facebook:** https://www.facebook.com/p/Ferrelaza-Chalchihuites-100040720813790/
-- **Horario:** abierto, cierra 7:30 pm
+- **Horario:** abierto, cierra 7:30 pm · **Remesas:** 8:30 am – 4:00 pm
 - **Calificaciones:** 4.4★ en Google (14 opiniones) · 5/5 en Facebook · +959 seguidores
 
 ---

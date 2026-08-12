@@ -24,14 +24,19 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            ink:   '#0B0B0D',   // negro base (colorimetría imagen 4)
-            coal:  '#111114',
-            slate2:'#17171B',
-            bone:  '#F6F3EC',   // blanco cálido
-            ash:   '#A6A6AE',
+            // Tokens semánticos (responden al tema vía variables CSS)
+            ink:   'rgb(var(--c-ink) / <alpha-value>)',    // fondo base
+            coal:  'rgb(var(--c-coal) / <alpha-value>)',   // superficie (tarjetas)
+            slate2:'rgb(var(--c-slate2) / <alpha-value>)', // superficie alterna
+            bone:  'rgb(var(--c-bone) / <alpha-value>)',   // texto principal
+            ash:   'rgb(var(--c-ash) / <alpha-value>)',    // texto secundario
+            film:  'rgb(var(--c-film) / <alpha-value>)',   // velo de superficie sutil
+            line:  'rgb(var(--c-line) / <alpha-value>)',   // hairlines / bordes
+            // Marca (fija en ambos temas)
             red: {
               DEFAULT: '#E11B22', // rojo pájaro Ferrelaza
               bright:  '#FF2E39',
@@ -52,14 +57,53 @@
     }
   </script>
 
+  <!-- Aplica el tema guardado antes de pintar (evita parpadeo) -->
+  <script>
+    (function(){
+      try{
+        var t = localStorage.getItem('ferrelaza-theme');
+        if(t === 'light') document.documentElement.classList.add('light');
+      }catch(e){}
+    })();
+  </script>
+
   <style>
     :root{
       --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
       --ease-io:  cubic-bezier(0.77, 0, 0.175, 1);
       --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+      /* ----- Tema oscuro (por defecto) ----- */
+      --c-ink:    11 11 13;      /* fondo base   #0B0B0D */
+      --c-coal:   17 17 20;      /* superficie   #111114 */
+      --c-slate2: 23 23 27;      /* alterna      #17171B */
+      --c-bone:   246 243 236;   /* texto        #F6F3EC */
+      --c-ash:    166 166 174;   /* secundario   #A6A6AE */
+      --c-film:   255 255 255;   /* velo claro sobre oscuro */
+      --c-line:   255 255 255;   /* hairline claro */
+      --chip:     #000000;       /* chip del logo */
+      --mesh-a: .28; --mesh-b: .10; --mesh-c: .14;  /* intensidad del glow */
+      --grain: .035;
+      color-scheme: dark;
     }
-    html,body{ background:#0B0B0D; }
-    body{ font-family:'Plus Jakarta Sans',system-ui,sans-serif; color:#F6F3EC; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    /* ----- Tema claro (armonía cálida crema + rojo) ----- */
+    html.light{
+      --c-ink:    246 242 234;   /* fondo crema  #F6F2EA */
+      --c-coal:   255 255 255;   /* tarjetas blancas */
+      --c-slate2: 237 231 221;   /* alterna beige #EDE7DD */
+      --c-bone:   28 24 20;       /* texto negro cálido #1C1814 */
+      --c-ash:    103 97 89;      /* secundario #676159 */
+      --c-film:   40 33 26;       /* velo oscuro sobre claro */
+      --c-line:   35 29 22;       /* hairline oscuro */
+      --chip:     #1A1613;        /* chip del logo (oscuro cálido) */
+      --mesh-a: .16; --mesh-b: .07; --mesh-c: .09;
+      --grain: .028;
+      color-scheme: light;
+    }
+
+    html,body{ background:rgb(var(--c-ink)); }
+    body{ font-family:'Plus Jakarta Sans',system-ui,sans-serif; color:rgb(var(--c-bone)); -webkit-font-smoothing:antialiased; overflow-x:hidden;
+          transition:background-color .5s var(--ease-out), color .5s var(--ease-out); }
 
     .font-display{ font-family:'Archivo',sans-serif; font-stretch:125%; letter-spacing:-0.01em; }
     .eyebrow{ font-family:'Space Grotesk',monospace; text-transform:uppercase; letter-spacing:.28em; font-size:.66rem; }
@@ -67,19 +111,23 @@
     /* ---- Malla de degradado / profundidad ---- */
     .mesh{
       background:
-        radial-gradient(60rem 40rem at 78% -10%, rgba(225,27,34,.28), transparent 60%),
-        radial-gradient(50rem 40rem at -10% 20%, rgba(255,46,57,.10), transparent 55%),
-        radial-gradient(40rem 40rem at 50% 120%, rgba(225,27,34,.14), transparent 60%);
+        radial-gradient(60rem 40rem at 78% -10%, rgba(225,27,34,var(--mesh-a)), transparent 60%),
+        radial-gradient(50rem 40rem at -10% 20%, rgba(255,46,57,var(--mesh-b)), transparent 55%),
+        radial-gradient(40rem 40rem at 50% 120%, rgba(225,27,34,var(--mesh-c)), transparent 60%);
     }
     .grain::after{
-      content:""; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.035;
+      content:""; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:var(--grain);
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
     /* ---- Doppelrand / doble bisel ---- */
-    .shell{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:2rem; padding:.4rem; }
-    .core{ background:#111114; border-radius:calc(2rem - .4rem); box-shadow:inset 0 1px 1px rgba(255,255,255,.06); }
-    .hair{ border:1px solid rgba(255,255,255,.08); }
+    .shell{ background:rgb(var(--c-film) / .03); border:1px solid rgb(var(--c-line) / .08); border-radius:2rem; padding:.4rem; }
+    .core{ background:rgb(var(--c-coal)); border-radius:calc(2rem - .4rem); box-shadow:inset 0 1px 1px rgb(var(--c-film) / .06); }
+    .hair{ border:1px solid rgb(var(--c-line) / .08); }
+    /* En claro, las tarjetas ganan profundidad con sombra suave en vez de brillo interno */
+    html.light .shell{ background:rgb(var(--c-film) / .02); box-shadow:0 1px 2px rgba(31,25,18,.04); }
+    html.light .core{ box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 1px 2px rgba(31,25,18,.05), 0 18px 40px -26px rgba(31,25,18,.28); }
+    html.light .hair{ border-color:rgb(var(--c-line) / .12); }
 
     /* ---- Botón isla ---- */
     .btn-island{ transition:transform .18s var(--ease-out), background .3s ease, box-shadow .3s ease; }
@@ -140,7 +188,12 @@
     @keyframes pulse{ 0%{ transform:scale(1); opacity:.5;} 100%{ transform:scale(1.9); opacity:0;} }
 
     ::selection{ background:#E11B22; color:#fff; }
-    .text-stroke{ -webkit-text-stroke:1.4px rgba(246,243,236,.85); color:transparent; }
+    .text-stroke{ -webkit-text-stroke:1.4px rgb(var(--c-bone) / .85); color:transparent; }
+
+    /* ---- Toggle de tema (sol / luna) ---- */
+    .ico-sun{ display:none; }
+    html.light .ico-sun{ display:block; }
+    html.light .ico-moon{ display:none; }
 
     @media (prefers-reduced-motion:reduce){
       *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.15s !important; }
@@ -162,7 +215,7 @@
         <div class="core hair !bg-ink/50 flex items-center justify-between gap-4 pl-4 pr-2 py-2 rounded-[1.6rem]">
           <!-- Logo -->
           <a href="#top" class="flex items-center gap-2.5 group">
-            <span class="w-9 h-9 grid place-items-center rounded-xl bg-black hair">
+            <span class="w-9 h-9 grid place-items-center rounded-xl bg-[var(--chip)] hair">
               <!-- pájaro Ferrelaza (SVG original) -->
               <svg viewBox="0 0 64 64" class="w-6 h-6" aria-hidden="true">
                 <path fill="#E11B22" d="M41 15c-1.6 2-4 3.2-6.6 3.5-5.9.6-11 3.6-14.2 8.4-1.5-2.2-1.9-4.9-1-7.4-3.4 2.2-5.6 6-5.8 10.2-2.1.7-4 2-5.4 3.8 2.7-.5 4.6-.3 5.8.4-2.7 2.8-4 6.6-3.6 10.5 1.7-3 3.6-4.8 5.4-5.6-.3 2.7.4 5.4 2 7.6l-2.1 6.4c-.3 1 .4 2 1.5 2h4.6l1.7-6.9c1.7.6 3.6.9 5.4.9l1.6 6c.3 1 1.5 1.5 2.4 1l3.9-2.2-1.9-6.1c4.6-2.6 7.7-7.2 8.4-12.4l6.3-3.2c1-.5 1-1.9.1-2.5l-5.4-3.4c-.8-4.6-4.3-8.4-8.8-9.6z"/>
@@ -185,6 +238,12 @@
           </div>
 
           <div class="flex items-center gap-2">
+            <!-- Toggle de tema -->
+            <button id="theme-toggle" aria-label="Cambiar entre modo claro y oscuro" title="Cambiar tema"
+                    class="btn-island w-10 h-10 grid place-items-center rounded-xl hair bg-film/5 text-bone hover:bg-film/10">
+              <svg class="ico-moon w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+              <svg class="ico-sun w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.6M12 18.9v2.6M4.6 4.6l1.9 1.9M17.5 17.5l1.9 1.9M2.5 12h2.6M18.9 12h2.6M4.6 19.4l1.9-1.9M17.5 6.5l1.9-1.9"/></svg>
+            </button>
             <!-- CTA principal -->
             <a href="https://wa.me/5216751057603?text=Hola%20Ferrelaza,%20quiero%20cotizar%20material%20para%20mi%20obra."
                target="_blank" rel="noopener"
@@ -195,7 +254,7 @@
               </span>
             </a>
             <!-- Burger -->
-            <button id="burger" aria-label="Abrir menú" class="burger lg:hidden w-10 h-10 grid place-items-center rounded-xl hair bg-white/5">
+            <button id="burger" aria-label="Abrir menú" class="burger lg:hidden w-10 h-10 grid place-items-center rounded-xl hair bg-film/5">
               <span class="relative block w-5 h-4">
                 <span class="l1 absolute left-0 top-0 w-5 h-0.5 bg-bone rounded"></span>
                 <span class="l2 absolute left-0 top-1.5 w-5 h-0.5 bg-bone rounded"></span>
@@ -229,7 +288,7 @@
     <div class="relative mx-auto max-w-6xl px-5 w-full grid lg:grid-cols-12 gap-10 items-center">
       <!-- Copy -->
       <div class="lg:col-span-7">
-        <div class="reveal inline-flex items-center gap-2 rounded-full hair bg-white/5 px-3 py-1.5">
+        <div class="reveal inline-flex items-center gap-2 rounded-full hair bg-film/5 px-3 py-1.5">
           <span class="w-1.5 h-1.5 rounded-full bg-red animate-pulse"></span>
           <span class="eyebrow text-ash">Ferretería · Construcción · Soldadura · Remesas</span>
         </div>
@@ -259,7 +318,7 @@
               <svg viewBox="0 0 24 24" class="w-4 h-4"><path fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </a>
-          <a href="#servicios" class="btn-island rounded-full hair bg-white/5 text-bone px-6 py-3.5 font-medium hover:bg-white/10">
+          <a href="#servicios" class="btn-island rounded-full hair bg-film/5 text-bone px-6 py-3.5 font-medium hover:bg-film/10">
             Ver servicios
           </a>
         </div>
@@ -270,9 +329,9 @@
             <span class="text-red text-lg leading-none">★★★★<span class="text-red/40">★</span></span>
             <span class="text-bone font-semibold">4.4</span><span class="text-ash">en Google · 14 opiniones</span>
           </div>
-          <span class="hidden sm:block w-px h-4 bg-white/15"></span>
+          <span class="hidden sm:block w-px h-4 bg-line/15"></span>
           <div class="text-ash"><span class="text-bone font-semibold">+959</span> familias nos siguen</div>
-          <span class="hidden sm:block w-px h-4 bg-white/15"></span>
+          <span class="hidden sm:block w-px h-4 bg-line/15"></span>
           <div class="text-ash"><span class="text-bone font-semibold">22 años</span> surtiendo la región</div>
         </div>
       </div>
@@ -288,15 +347,15 @@
               </span>
             </div>
             <div class="mt-5 space-y-3">
-              <div class="flex items-center gap-3 rounded-xl hair bg-white/[.03] p-3">
+              <div class="flex items-center gap-3 rounded-xl hair bg-film/[.04] p-3">
                 <span class="w-9 h-9 rounded-lg bg-red/15 grid place-items-center text-red font-display font-900">M</span>
                 <div><p class="text-sm font-semibold text-bone">Material por volumen</p><p class="text-xs text-ash">Cemento, varilla, block, agregados</p></div>
               </div>
-              <div class="flex items-center gap-3 rounded-xl hair bg-white/[.03] p-3">
+              <div class="flex items-center gap-3 rounded-xl hair bg-film/[.04] p-3">
                 <span class="w-9 h-9 rounded-lg bg-red/15 grid place-items-center text-red font-display font-900">S</span>
                 <div><p class="text-sm font-semibold text-bone">Taller de soldadura</p><p class="text-xs text-ash">Estructuras, herrería y reparación</p></div>
               </div>
-              <div class="flex items-center gap-3 rounded-xl hair bg-white/[.03] p-3">
+              <div class="flex items-center gap-3 rounded-xl hair bg-film/[.04] p-3">
                 <span class="w-9 h-9 rounded-lg bg-red/15 grid place-items-center text-red font-display font-900">$</span>
                 <div><p class="text-sm font-semibold text-bone">Pago de remesas</p><p class="text-xs text-ash">Transparente y de confianza</p></div>
               </div>
@@ -304,6 +363,16 @@
             <div class="mt-5 flex items-center justify-between rounded-xl bg-red/10 hair !border-red/20 px-4 py-3">
               <div><p class="text-xs text-ash">Horario de hoy</p><p class="text-sm font-semibold text-bone">Abierto · cierra 7:30 pm</p></div>
               <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
+            </div>
+            <!-- Apartado especial: horario de remesas -->
+            <div class="mt-3 flex items-center gap-3 rounded-xl bg-red/[.07] hair !border-red/20 px-4 py-3">
+              <span class="w-9 h-9 rounded-lg bg-red/15 grid place-items-center text-red shrink-0">
+                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </span>
+              <div class="min-w-0">
+                <p class="text-xs text-ash">Horario de remesas <span class="text-red font-semibold">· pagos y cobros</span></p>
+                <p class="text-sm font-semibold text-bone">8:30 am – 4:00 pm</p>
+              </div>
             </div>
           </div>
         </div>
@@ -433,10 +502,10 @@
                 ¿Vas a construir en Chalchihuites o alrededores? Nosotros te lo entregamos sin que pares la obra.
               </p>
               <div class="mt-6 flex flex-wrap gap-2">
-                <span class="rounded-lg hair bg-white/[.03] px-3 py-1.5 text-sm text-bone">Cemento Moctezuma</span>
-                <span class="rounded-lg hair bg-white/[.03] px-3 py-1.5 text-sm text-bone">Varilla &amp; alambrón</span>
-                <span class="rounded-lg hair bg-white/[.03] px-3 py-1.5 text-sm text-bone">Block &amp; tabique</span>
-                <span class="rounded-lg hair bg-white/[.03] px-3 py-1.5 text-sm text-bone">Cal, cemento cola, agregados</span>
+                <span class="rounded-lg hair bg-film/[.04] px-3 py-1.5 text-sm text-bone">Cemento Moctezuma</span>
+                <span class="rounded-lg hair bg-film/[.04] px-3 py-1.5 text-sm text-bone">Varilla &amp; alambrón</span>
+                <span class="rounded-lg hair bg-film/[.04] px-3 py-1.5 text-sm text-bone">Block &amp; tabique</span>
+                <span class="rounded-lg hair bg-film/[.04] px-3 py-1.5 text-sm text-bone">Cal, cemento cola, agregados</span>
               </div>
               <a href="https://wa.me/5216751057603?text=Hola%20Ferrelaza,%20quiero%20precio%20de%20material%20por%20volumen%20para%20mi%20obra."
                  target="_blank" rel="noopener"
@@ -512,9 +581,9 @@
           </p>
           <div class="reveal mt-8 flex items-center gap-4" style="--d:180ms">
             <div class="text-center"><p class="font-display font-900 text-4xl text-red">2002</p><p class="eyebrow text-ash mt-1">Fundación</p></div>
-            <span class="w-px h-10 bg-white/15"></span>
+            <span class="w-px h-10 bg-line/20"></span>
             <div class="text-center"><p class="font-display font-900 text-4xl text-red">5</p><p class="eyebrow text-ash mt-1">Servicios</p></div>
-            <span class="w-px h-10 bg-white/15"></span>
+            <span class="w-px h-10 bg-line/20"></span>
             <div class="text-center"><p class="font-display font-900 text-4xl text-red">1</p><p class="eyebrow text-ash mt-1">Sola familia</p></div>
           </div>
         </div>
@@ -650,7 +719,7 @@
               <li class="flex gap-2.5 text-bone/90"><span class="text-red">✓</span> Asesoría honesta sin compromiso</li>
               <li class="flex gap-2.5 text-bone/90"><span class="text-red">✓</span> Boilers solares para el hogar</li>
             </ul>
-            <a href="https://wa.me/5216751057603" target="_blank" rel="noopener" class="btn-island mt-7 text-center rounded-full hair bg-white/5 text-bone px-5 py-3 font-semibold hover:bg-white/10">Preguntar disponibilidad</a>
+            <a href="https://wa.me/5216751057603" target="_blank" rel="noopener" class="btn-island mt-7 text-center rounded-full hair bg-film/5 text-bone px-5 py-3 font-semibold hover:bg-film/10">Preguntar disponibilidad</a>
           </div>
         </div>
 
@@ -688,7 +757,7 @@
               <li class="flex gap-2.5 text-bone/90"><span class="text-red">✓</span> Pago y cobro de remesas</li>
               <li class="flex gap-2.5 text-bone/90"><span class="text-red">✓</span> Comisiones claras, sin sorpresas</li>
             </ul>
-            <a href="https://wa.me/5216751057603" target="_blank" rel="noopener" class="btn-island mt-7 text-center rounded-full hair bg-white/5 text-bone px-5 py-3 font-semibold hover:bg-white/10">Agendar un trabajo</a>
+            <a href="https://wa.me/5216751057603" target="_blank" rel="noopener" class="btn-island mt-7 text-center rounded-full hair bg-film/5 text-bone px-5 py-3 font-semibold hover:bg-film/10">Agendar un trabajo</a>
           </div>
         </div>
       </div>
@@ -766,7 +835,7 @@
           Escribir por WhatsApp
           <span class="btn-dot w-9 h-9 rounded-full bg-white/15 grid place-items-center"><svg viewBox="0 0 24 24" class="w-5 h-5"><path fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
-        <a href="tel:+526751057603" class="btn-island rounded-full hair bg-white/5 text-bone px-6 py-4 font-medium text-lg hover:bg-white/10">Llamar: 675 105 7603</a>
+        <a href="tel:+526751057603" class="btn-island rounded-full hair bg-film/5 text-bone px-6 py-4 font-medium text-lg hover:bg-film/10">Llamar: 675 105 7603</a>
       </div>
     </div>
   </section>
@@ -777,7 +846,7 @@
       <div class="grid md:grid-cols-12 gap-10">
         <div class="md:col-span-5">
           <a href="#top" class="flex items-center gap-2.5">
-            <span class="w-9 h-9 grid place-items-center rounded-xl bg-black hair">
+            <span class="w-9 h-9 grid place-items-center rounded-xl bg-[var(--chip)] hair">
               <svg viewBox="0 0 64 64" class="w-6 h-6"><path fill="#E11B22" d="M41 15c-1.6 2-4 3.2-6.6 3.5-5.9.6-11 3.6-14.2 8.4-1.5-2.2-1.9-4.9-1-7.4-3.4 2.2-5.6 6-5.8 10.2-2.1.7-4 2-5.4 3.8 2.7-.5 4.6-.3 5.8.4-2.7 2.8-4 6.6-3.6 10.5 1.7-3 3.6-4.8 5.4-5.6-.3 2.7.4 5.4 2 7.6l-2.1 6.4c-.3 1 .4 2 1.5 2h4.6l1.7-6.9c1.7.6 3.6.9 5.4.9l1.6 6c.3 1 1.5 1.5 2.4 1l3.9-2.2-1.9-6.1c4.6-2.6 7.7-7.2 8.4-12.4l6.3-3.2c1-.5 1-1.9.1-2.5l-5.4-3.4c-.8-4.6-4.3-8.4-8.8-9.6z"/><circle cx="43" cy="26" r="1.7" fill="#0B0B0D"/></svg>
             </span>
             <span><span class="font-display text-lg font-900 italic text-bone">FERRELAZA</span><span class="block eyebrow text-[.5rem] tracking-[.34em] text-ash -mt-0.5">CHALCHIHUITES</span></span>
@@ -807,6 +876,7 @@
             <li class="flex gap-3"><span class="text-red">💬</span> WhatsApp: <a href="https://wa.me/5216751057603" target="_blank" rel="noopener" class="hover:text-bone transition-colors">675 105 7603</a> · 457 104 0446</li>
             <li class="flex gap-3"><span class="text-red">✉️</span> <a href="mailto:ferrelaza7@hotmail.com" class="hover:text-bone transition-colors">ferrelaza7@hotmail.com</a></li>
             <li class="flex gap-3"><span class="text-red">🕒</span> Abierto · cierra a las 7:30 pm</li>
+            <li class="flex gap-3"><span class="text-red">💵</span> Remesas: 8:30 am – 4:00 pm</li>
             <li class="flex gap-3"><span class="text-red">👍</span> <a href="https://www.facebook.com/p/Ferrelaza-Chalchihuites-100040720813790/" target="_blank" rel="noopener" class="hover:text-bone transition-colors">Facebook: Ferrelaza Chalchihuites</a></li>
           </ul>
         </div>
@@ -834,13 +904,13 @@
         <div class="core hair !rounded-[0.9rem] px-4 py-3 relative">
           <p class="eyebrow text-red !text-[.55rem] !tracking-[.24em]">Julis te aconseja</p>
           <p id="julis-text" class="text-bone text-[13px] leading-snug mt-1">¡Hola! Soy Julis. Te cuento cómo Ferrelaza te ayuda 👋</p>
-          <span class="arrow absolute -bottom-1.5 w-3 h-3 rotate-45 bg-coal border-r border-b border-white/10"></span>
+          <span class="arrow absolute -bottom-1.5 w-3 h-3 rotate-45 bg-coal border-r border-b border-line/12"></span>
         </div>
       </div>
     </div>
 
     <!-- cerrar -->
-    <button id="julis-close" aria-label="Ocultar a Julis" class="absolute -top-2 -right-1 z-10 w-6 h-6 rounded-full bg-black hair grid place-items-center text-ash hover:text-bone text-sm">×</button>
+    <button id="julis-close" aria-label="Ocultar a Julis" class="absolute -top-2 -right-1 z-10 w-6 h-6 rounded-full bg-coal hair grid place-items-center text-ash hover:text-bone text-sm">×</button>
 
     <!-- cuerpo (SVG original estilo bolsa de cemento kawaii) -->
     <div id="julis-body" class="cursor-pointer">
@@ -1055,6 +1125,27 @@
 
     // Oculta la burbuja al inicio en móviles muy chicos para no estorbar
     if(innerWidth < 380){ julis.style.width='120px'; }
+
+    /* ============================================================
+       TOGGLE DE TEMA (claro / oscuro) con persistencia
+       ============================================================ */
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const meta = document.querySelector('meta[name="theme-color"]');
+      function apply(light){
+        root.classList.toggle('light', light);
+        if(meta) meta.setAttribute('content', light ? '#F6F2EA' : '#0B0B0D');
+        if(btn) btn.setAttribute('aria-pressed', String(light));
+      }
+      // estado inicial (el <head> ya aplicó la clase; aquí sincronizamos meta/aria)
+      apply(root.classList.contains('light'));
+      btn && btn.addEventListener('click', ()=>{
+        const light = !root.classList.contains('light');
+        apply(light);
+        try{ localStorage.setItem('ferrelaza-theme', light ? 'light' : 'dark'); }catch(e){}
+      });
+    })();
   </script>
 </body>
 </html>
